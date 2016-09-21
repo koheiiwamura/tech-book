@@ -1,0 +1,51 @@
+.navbar-logo img {
+  height: 45px;
+}
+
+.btn-primary {
+  background-color: $accent_color;
+  border-color: $accent_color;
+  &:hover {
+    background-color: lighten($accent_color, 10%);
+    border-color: $accent_color;
+  }
+}
+
+.main-wrapper .container .full-width #long-column-item {
+  width: 50%;
+}
+
+.new-books .package-grid-item {
+  width: 100%;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+.price span {
+  font-size: calc(150%);
+}
+
+.user-thumbnail {
+  display: block;
+  margin: 0 auto;
+  height: 80px;
+  width: 80px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  -webkit-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.payment-traveller {
+  border-bottom: 0;
+}
+
+.package-list-item-link .content p {
+  color: #666;
+  font-weight: lighter;
+}

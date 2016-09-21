@@ -1,0 +1,7 @@
+$main_color: #ff8500;
+$main_color: darken(#13B788, 8%);
+$dark_color: darken($main_color, 2%);
+$accent_color: #13B788;
+$accent_color: darken(#ff8500, 2%);
+$hover_color: darken($accent_color, 10%);
+$dark_accent_color: darken($hover_color, 5%);
