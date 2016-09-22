@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # root 'devise/sessions#create', as: 'user_session_path'
   devise_for :users
   resources :users, only: [:show, :edit, :update]
   resources :tags, only: :index

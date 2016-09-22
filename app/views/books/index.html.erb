@@ -10,7 +10,7 @@
       <!-- Begin # DIV Form -->
       <div id="modal-login-form-wrapper">
         <!-- Begin # Login Form -->
-        <form id="login-form">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name),html: {id: "login-form"} ) do |f| %>
           <div class="modal-body pb-5">
             <h4 class="text-center heading mt-10 mb-20">ログイン</h4>
             <button class="btn btn-facebook btn-block">Facebookでログイン</button>
@@ -18,17 +18,17 @@
               <span>or</span>
             </div>
             <div class="form-group">
-              <input id="login_username" class="form-control" placeholder="ユーザーネーム" type="text">
+              <%= f.text_field :username, placeholder:"ユーザーネーム", class:"form-control",id:"login_username" %>
             </div>
             <div class="form-group">
-              <input id="login_password" class="form-control" placeholder="パスワード" type="password">
+              <%= f.password_field :password, placeholder:"パスワード", class:"form-control",id:"login_password" %>
             </div>
             <div class="form-group">
               <div class="row gap-5">
                 <div class="col-xs-6 col-sm-6 col-md-6">
                   <div class="checkbox-block fa-checkbox">
                     <input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox">
-                    <label class="" for="remember_me_checkbox">ログイン情報を記憶する</label>
+                    <%= f.check_box :remember_me,type: "checkbox", value: "ログイン情報を記憶する" %>
                   </div>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -40,7 +40,7 @@
           <div class="modal-footer">
             <div class="row gap-10">
               <div class="col-xs-6 col-sm-6 mb-10">
-                <button type="submit" class="btn btn-primary btn-block">ログイン</button>
+                <%= f.submit "ログイン", class:"btn btn-primary btn-block" %>
               </div>
               <div class="col-xs-6 col-sm-6 mb-10">
                 <button type="submit" class="btn btn-primary btn-block btn-inverse" data-dismiss="modal" aria-label="Close">戻る</button>
@@ -51,7 +51,8 @@
               <button id="login_register_btn" type="button" class="btn btn-link">こちら</button>
             </div>
           </div>
-        </form>
+        <!-- </form> -->
+        <% end %>
         <!-- End # Login Form -->
         <!-- Begin | Lost Password Form -->
         <form id="lost-form" style="display:none;">
@@ -61,7 +62,7 @@
               <input id="lost_email" class="form-control" type="text" placeholder="登録したアドレスを入力">
             </div>
             <div class="text-center">
-              <button id="lost_login_btn" type="button" class="btn btn-link">ログイン</button> / 
+              <button id="lost_login_btn" type="button" class="btn btn-link">ログイン</button> /
               <button id="lost_register_btn" type="button" class="btn btn-link">新規登録</button>
             </div>
           </div>
@@ -78,7 +79,8 @@
         </form>
         <!-- End | Lost Password Form -->
         <!-- Begin | Register Form -->
-        <form id="register-form" style="display:none;">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'register-form', style:"display:none"} ) do |f| %>
+          <%= devise_error_messages! %>
           <div class="modal-body pb-5">
             <h3 class="text-center heading mt-10 mb-20">新規登録</h3>
             <button class="btn btn-facebook btn-block">Facebookで登録</button>
@@ -86,23 +88,22 @@
               <span>or</span>
             </div>
             <div class="form-group">
-              <input id="register_username" class="form-control" type="text" placeholder="ユーザーネーム">
+              <%= f.text_field :username, autofocus: true, placeholder:"ユーザーネーム", id:"register_username",  class:"form-control" %>
             </div>
             <div class="form-group">
-              <input id="register_email" class="form-control" type="email" placeholder="Emailアドレス">
+              <%= f.email_field :email, autofocus: true, placefolder:"Emailアドレス", id:"register_email",  class:"form-control", placeholder:"Emailアドレス" %>
             </div>
             <div class="form-group">
-              <input id="register_password" class="form-control" type="password" placeholder="パスワード">
+              <%= f.password_field :password, autofocus: true, placeholder:"パスワード", autocomplete: "off", id:"register_password",  class:"form-control" %>
             </div>
             <div class="form-group">
-              <input id="register_password_confirm" class="form-control" type="password" placeholder="パスワードを再入力">
+              <%= f.password_field :password_confirmation, autofocus: true, placeholder:"パスワードを再入力", autocomplete: "off", id:"register_password_confirmation",  class:"form-control" %>
             </div>
-
           </div>
           <div class="modal-footer mt-10">
             <div class="row gap-10">
               <div class="col-xs-6 col-sm-6 mb-10">
-                <button type="submit" class="btn btn-primary btn-block">登録</button>
+                <%= f.submit "登録", class:"btn btn-primary btn-block" %>
               </div>
               <div class="col-xs-6 col-sm-6 mb-10">
                 <button type="submit" class="btn btn-primary btn-inverse btn-block" data-dismiss="modal" aria-label="Close">戻る</button>
@@ -112,7 +113,7 @@
                 すでにアカウントをお持ちの場合は<button id="register_login_btn" type="button" class="btn btn-link">こちら</button>
             </div>
           </div>
-        </form>
+        <% end %>
         <!-- End | Register Form -->
       </div>
       <!-- End # DIV Form -->
@@ -125,8 +126,15 @@
   <!-- start Header -->
   <header id="header">
     <!-- start Navbar (Header) -->
+
     <nav class="navbar navbar-primary navbar-fixed-top navbar-sticky-function">
       <div class="navbar-top">
+        <% if notice %>
+          <p class="alert alert-notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+         <p class="alert alert-error"><%= alert %></p>
+        <% end %>
         <div class="container">
           <div class="flex-row flex-align-middle">
             <div class="flex-shrink flex-columns">
@@ -137,20 +145,24 @@
             <div class="flex-columns">
               <div class="pull-right">
                 <div class="navbar-mini">
+
                   <ul class="clearfix">
-                    <li class="dropdown bt-dropdown-click hidden-xs">
-                      <a id="currncy-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="ion-android-settings hidden-xss"></i> メニュー
-                        <span class="caret"></span>
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="language-dropdown">
-                        <li><a href="#">マイページ</a></li>
-                        <li><a href="#">ログアウト</a></li>
-                      </ul>
-                    </li>
-                    <li class="user-action">
-                      <a data-toggle="modal" href="#loginModal" class="btn">ログイン／新規登録</a>
-                    </li>
+                    <% if user_signed_in? %>
+                      <li class="dropdown bt-dropdown-click hidden-xs">
+                        <a id="currncy-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <i class="ion-android-settings hidden-xss"></i> メニュー
+                          <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="language-dropdown">
+                          <li><a href="#">マイページ</a></li>
+                          <li><%= link_to "ログアウト",destroy_user_session_path,method: :delete %></li>
+                        </ul>
+                      </li>
+                    <% else %>
+                      <li class="user-action">
+                        <a data-toggle="modal" href="#loginModal" class="btn">ログイン／新規登録</a>
+                      </li>
+                    <% end %>
                   </ul>
                 </div>
               </div>
@@ -166,7 +178,7 @@
   <!-- start Main Wrapper -->
   <div class="main-wrapper">
     <!-- start hero-header with windows height -->
-    <div class="hero" style="background-image:url('images/books.jpeg');">
+    <div class="hero" style="background-image:url('assets/images/books.jpeg');">
       <div class="container">
         <div class="row">
           <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
