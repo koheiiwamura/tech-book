@@ -88,16 +88,16 @@
               <span>or</span>
             </div>
             <div class="form-group">
-              <%= f.text_field :username, autofocus: true, placeholder:"ユーザーネーム", id:"register_username",  class:"form-control" %>
+              <%= f.text_field :username, autofocus: true, placeholder:"ユーザーネーム", id:"register_username",  class:"form-control", required:"true" %>
             </div>
             <div class="form-group">
-              <%= f.email_field :email, autofocus: true, placefolder:"Emailアドレス", id:"register_email",  class:"form-control", placeholder:"Emailアドレス" %>
+              <%= f.email_field :email, autofocus: true, placefolder:"Emailアドレス", id:"register_email",  class:"form-control", placeholder:"Emailアドレス", pettern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$", required:"true" %>
             </div>
             <div class="form-group">
-              <%= f.password_field :password, autofocus: true, placeholder:"パスワード", autocomplete: "off", id:"register_password",  class:"form-control" %>
+              <%= f.password_field :password, autofocus: true, placeholder:"パスワード", id:"register_password",  class:"form-control", pattern:"^([a-zA-Z0-9]{8,})$", title:"半角英数字8文字以上", required:"true" %>
             </div>
             <div class="form-group">
-              <%= f.password_field :password_confirmation, autofocus: true, placeholder:"パスワードを再入力", autocomplete: "off", id:"register_password_confirmation",  class:"form-control" %>
+              <%= f.password_field :password_confirmation, autofocus: true, placeholder:"パスワードを再入力", autocomplete: "off", id:"register_password_confirmation", pettern:"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", type:"password",class:"form-control", pattern:"^([a-zA-Z0-9]{8,})$", title:"半角英数字8文字以上", required:"true" %>
             </div>
           </div>
           <div class="modal-footer mt-10">
@@ -178,7 +178,7 @@
   <!-- start Main Wrapper -->
   <div class="main-wrapper">
     <!-- start hero-header with windows height -->
-    <div class="hero" style="background-image:url('assets/images/books.jpeg');">
+    <div class="hero" style="background-image:url('assets/books.jpeg');">
       <div class="container">
         <div class="row">
           <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
@@ -319,7 +319,7 @@
           </div>
         </div>
         <div class="GridLex-col-6_sm-12 image-bg">
-          <div class="image-bg" style="background-image:url('images/books_on_desk2.jpg');"></div>
+          <div class="image-bg" style="background-image:url('assets/books_on_desk2.jpg');"></div>
         </div>
       </div>
     </section>
