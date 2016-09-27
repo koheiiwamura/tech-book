@@ -236,7 +236,7 @@ jQuery(function($) {
     /**
      * Raty - Rating Star
      */
-    $.fn.raty.defaults.path = 'images/raty';
+    $.fn.raty.defaults.path = 'assets/raty';
     
     // Default size star 
     $('.star-rating').raty({
@@ -261,7 +261,7 @@ jQuery(function($) {
     
     // Smaller size star
     $('.star-rating-12px').raty({
-      path: 'images/raty',
+      path: 'assets/images/raty',
       starHalf: 'star-half-sm.png',
       starOff: 'star-off-sm.png',
       starOn: 'star-on-sm.png',
@@ -276,7 +276,7 @@ jQuery(function($) {
     
     // White color default size star
     $('.star-rating-white').raty({
-      path: 'images/raty',
+      path: 'assets/images/raty',
       starHalf: 'star-half-white.png',
       starOff: 'star-off-white.png',
       starOn: 'star-on-white.png',
