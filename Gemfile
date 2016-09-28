@@ -45,4 +45,7 @@ group :development do
   gem 'spring'
 end
 gem 'devise'
-
+gem 'acts-as-taggable-on', '~> 3.4'
+gem 'pry-rails'
+gem 'kaminari'
+gem 'carrierwave'
