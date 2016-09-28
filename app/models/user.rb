@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   #usernameを必須とする
   validates_uniqueness_of :username
   validates_presence_of :username
+  has_many :books
+  mount_uploader :avatar, ImageUploader
 
   #usernameを利用してログインするようにオーバーライド
   def self.find_first_by_auth_conditions(warden_conditions)
