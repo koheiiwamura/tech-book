@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
 
   def index
+    @books = Book.all.includes(:user).page(params[:page]).per(8)
   end
 
   def new
@@ -17,6 +18,9 @@ class BooksController < ApplicationController
       flash[:alert] = "投稿に失敗しました"
       render :new
     end
+  end
+
+  def edit
   end
 
   private
