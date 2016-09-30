@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   has_many :books
   has_many :likes
+  has_many :like_books, through: :likes, source: :book
   mount_uploader :avatar, ImageUploader
 
   #usernameを利用してログインするようにオーバーライド
