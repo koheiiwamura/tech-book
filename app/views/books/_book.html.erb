@@ -19,7 +19,7 @@
           </div>
         </div> -->
         <div class="absolute-in-content">
-          <span class="btn"><i class="fa fa-heart-o"></i></span>
+          <%= render partial:"likes/like", locals:{book: book, like: Like.find_by(user_id: current_user.id, book_id: book.id)}%>
           <div class="price"><%= book.total_price(book) %>円</div>
         </div>
       </div>

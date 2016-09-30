@@ -41,7 +41,11 @@
                   <div class="section-title text-left">
                     <h4>概要</h4>
                   </div>
-                    <h5 class="heading"><%= @book.title %></h5>
+                    <h5 class="heading"><%= @book.title %>
+                      <span id="like_buttons">
+                        <%= render partial:"likes/like", locals:{book: @book, like: @like}%>
+                      </span>
+                    </h5>
                     <h5 class="price mt-0">合計金額: <span><%= @book.total_price(@book) %>円</span></h5>
                 </div>
                 <div id="section-2" class="detail-content">
@@ -74,15 +78,17 @@
                         </div>
                       </div>
                     </div>
-                    <% if current_user.id != @book.user_id %>
-                      <div class="text-center pt-10">
-                        <%= link_to "購入ページへ", "#", class:"btn btn-primary btn-full-width" %>
-                      </div>
-                    <% else %>
-                      <div class="text-center pt-10">
-                        <%= link_to "編集する", edit_book_path(@book), class:"btn btn-primary btn-full-width" %>
-                        <%= link_to "削除する", book_path(@book), method: :delete, class:"destroy-button-custom btn  btn-full-width" %>
-                      </div>
+                    <% if current_user %>
+                      <% if current_user.id != @book.user_id %>
+                        <div class="text-center pt-10">
+                          <%= link_to "購入ページへ", "#", class:"btn btn-primary btn-full-width" %>
+                        </div>
+                      <% else %>
+                        <div class="text-center pt-10">
+                          <%= link_to "編集する", edit_book_path(@book), class:"btn btn-primary btn-full-width" %>
+                          <%= link_to "削除する", book_path(@book), method: :delete, class:"destroy-button-custom btn  btn-full-width" %>
+                        </div>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>

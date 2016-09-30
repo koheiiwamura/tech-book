@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_presence_of :username
   has_many :books
+  has_many :likes
   mount_uploader :avatar, ImageUploader
 
   #usernameを利用してログインするようにオーバーライド
