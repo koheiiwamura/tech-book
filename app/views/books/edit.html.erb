@@ -1,0 +1,96 @@
+  <div class="clear"></div>
+  <!-- start Main Wrapper -->
+  <div class="main-wrapper scrollspy-container">
+    <!-- start end Page title -->
+    <div class="page-title detail-page-title" style="background-image:url('/assets/books_on_desk2.jpg');">
+      <div class="container">
+        <div class="flex-row">
+          <div class="flex-column flex-md-8 flex-sm-12">
+            <h1 class="hero-title">出品した本を編集する</h1>
+            <p class="line18">エンジニア仲間を輝かせる一冊に</p>
+          </div>
+          <div class="flex-column flex-md-4 flex-align-bottom flex-sm-12 mt-20-sm">
+            <div class="text-right text-left-sm">
+              <%= link_to "トップページへ", root_path, class: "anchor btn btn-primary"%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Page title -->
+    <div class="breadcrumb-wrapper bg-light-2">
+      <div class="container">
+        <ol class="breadcrumb-list">
+          <li><a href="#">Home</a></li>
+          <li><span>本を売る</span></li>
+        </ol>
+      </div>
+    </div>
+    <%= form_for(@book) do |f| %>
+      <div class="content-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 col-xs-12   mb-50-xs">
+              <div class="scrollspy-sidebar sidebar-detail" role="complementary">
+                <%= f.file_field :image, id:'protoInput', required: true%>
+              </div>
+            </div>
+            <div class="col-md-9 mt-30-xs" role="main">
+              <div class="detail-content-wrapper">
+                  <div id="section-0" class="detail-content">
+                    <div class="section-title text-left">
+                      <h4>本の名前</h4>
+                    </div>
+                      <%= f.text_field :title, placeholder: "本のタイトル", required: true %>
+                      <!-- <h5 class="heading">ランディングページ・デザインメソッド</h5> -->
+                  </div>
+                  <div id="section-2" class="detail-content">
+                    <div class="section-title text-left">
+                      <h4>詳細</h4>
+                    </div>
+                    <div class="detail-item">
+                      <div class="row">
+                        <div class="col-sm-4 col-sm-3">
+                          <ul class="list-info no-icon bb-dotted">
+                            <li><span class="font600">本体価格:</span><%= f.text_field :price, placeholder: "本体価格", required: true, type:"number" %></li>
+                            <li><span class="font600">送料:</span><%= f.text_field :postage, placeholder: "送料",required: true, type:"number" %></li>
+                            <li><span class="font600">カテゴリ:</span>
+                              <%= select_tag "book[tag][]", options_for_select(["HTML CSS", "Ruby", "JavaScript", "Ruby on Rails", "PHP", "Java"] || @book.tags) %>
+                            </li>
+                            <li><span class="font600">状態: </span><%= f.text_field :state, placeholder: "本の状態", required: true %></li>
+                          </ul>
+                        </div>
+                        <div class="col-sm-8 col-md-9">
+<!--                           <div class="itinerary-wrapper">
+                            <div class="itinerary-item"> -->
+                              <h5 class="mb-20">この本の内容を記入してください</h5>
+                              <div class="intro-item-body">
+                                <%= f.text_area :content, cols: "80", rows: "4", placeholder: "本の内容", required: true %>
+<!--                                 <p>ランディングページのデザインのための、マーケティングやコンバージョンなどに関する幅広い知識を身につけることができます。<br>2016年の秋に購入し、角にやや傷がありますが、中身はまだまだ綺麗なので問題なう読んでいただけるかと思います。</p> -->
+                              </div>
+                           <!--  </div>
+                          </div> -->
+                        </div>
+                      </div>
+                      <div class="text-center pt-10">
+                        <!-- <a href="#" class="btn btn-primary btn-full-width">出品する</a> -->
+                        <%= f.submit "更新する", class:"btn btn-primary btn-full-width" %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="call-to-action">
+                    <a href="#" class="btn btn-primary btn-sm btn-inverse">お問い合わせ</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!-- end Main Wrapper -->
+  <!-- start Back To Top -->
+  <div id="back-to-top">
+     <a href="#"><i class="fa fa-angle-up"></i></a>
+  </div>
+  <!-- end Back To Top -->

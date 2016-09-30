@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # get "/users/sign_in" => redirect(""), :defaults  => { :alert => 'aaaaa'  }
   post "/users"         => redirect(""), flash: {success: 'ERROR!!'}
   devise_for :users
+  namespace :users do
+    resources :selled, only:[:index]
+  end
   resources :users, only: [:show, :edit, :update]
   resources :tags, only: :index
   root 'books#index'

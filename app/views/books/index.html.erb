@@ -156,6 +156,7 @@
                         <ul class="dropdown-menu" aria-labelledby="language-dropdown">
                           <li><%= link_to "マイページ",user_path(current_user) %></li>
                           <li><%= link_to "本を売る",new_book_path %></li>
+                          <li><%= link_to "出品中の本",users_selled_index_path, method: :get %></li>
                           <li><%= link_to "ログアウト",destroy_user_session_path,method: :delete %></li>
                         </ul>
                       </li>
@@ -231,34 +232,7 @@
         <div class="GridLex-gap-30-wrappper package-grid-item-wrapper">
           <div class="GridLex-grid-noGutter-equalHeight">
             <% @books.each do |book| %>
-              <div class="GridLex-col-3_sm-4_xs-12 mb-30">
-                <div class="package-grid-item">
-                  <a href="detail-page.html">
-                    <div class="image">
-                      <%= image_tag("#{book.image}", alt: "Tour Package") %>
-                      <div class="absolute-in-image">
-                        <% book.tags.each do |tag| %>
-                          <div class="duration">
-                            <span><%= tag.name %></span>
-                          </div>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="content clearfix">
-                      <h5><%= book.title %></h5>
-                      <div class="rating-wrapper">
-                        <div class="raty-wrapper">
-                          <div class="star-rating-read-only" data-rating-score="4.0"></div> <span> / 7 review</span>
-                        </div>
-                      </div>
-                      <div class="absolute-in-content">
-                        <span class="btn"><i class="fa fa-heart-o"></i></span>
-                        <div class="price">$<%= book.total_price(book) %></div>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
+             <%= render partial:"book", locals:{book: book} %>
             <% end %>
           </div>
         </div>
