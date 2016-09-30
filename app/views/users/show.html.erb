@@ -6,14 +6,15 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
-          <h2 class="text-white">せきやじょうじ</h2>
-          <div class="user-thumbnail mb-10" style="background-image:url('/assets/sekiya.jpeg');">
+          <h2 class="text-white"><%= @user.username %>さん</h2>
+          <div class="user-thumbnail mb-10" style="background-image:url('#{@user.avatar}');">
           <!-- <img src="images/books/book9.jpg" alt="" class="user-thumbnail"> -->
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <!-- end Page title -->
 
 <!-- end Main Wrapper -->
@@ -42,37 +43,78 @@
                 <h4>登録情報</h4>
               </div>
               <ul class="book-sum-list">
-                <li><span class="font600">名前: </span><%= current_user.username %> 様</li>
-                <li><span class="font600">email: </span> <%= current_user.email %></li>
-                <li><span class="font600">お届け先郵便番号: </span> 150-0000</li>
-                <li><span class="font600">お届け先住所: </span>東京都渋谷区道玄坂２丁目新大宗ビル３号館８階</li>
-                <li><span class="font600">お支払金額合計: </span>1200円</li>
+                <li><span class="font600">名前: </span> <%= @user.username %> 様</li>
+                <li><span class="font600">苗字: </span> <%= @user.last_name %></li>
+                <li><span class="font600">名前: </span> <%= @user.first_name %></li>
+                <li><span class="font600">email: </span> <%= @user.email %></li>
+                <li><span class="font600">お届け先郵便番号: </span><%= @user.postal_code %></li>
+                <li><span class="font600">お届け先住所: </span><%= @user.street_adress %></li>
+                <li><span class="font600">電話番号: </span><%= @user.phone_number %></li>
               </ul>
             </div>
             <div class="text-right">
-            <button class="btn btn-primary btn-inverse">登録情報を編集する</button>
+            <%=button_to "登録情報を編集する", edit_user_path(@user), class:"btn btn-primary btn-inverse",method: :get%>
+            <%= link_to "トップページへ", root_path, class: "anchor btn btn-primary"%>
           </div>
           </div>
         </div>
-<!--         <div class="col-sm-4 col-md-3 mt-50-xs">
-          <aside class="sidebar with-filter">
-            <div class="sidebar-inner">
-              <div class="sidebar-module">
-                <h4 class="heading mt-0">お問い合わせ</h4>
-                <div class="sidebar-module-inner">
-                  <p class="mb-10">東京都渋谷区道玄坂２丁目新大宗ビル３号館８階</p>
-                  <ul class="help-list">
-                    <li><span class="font600">電話番号</span>: 090-0000-0000</li>
-                    <li><span class="font600">Email</span>: support@tech-book.com</li>
-                    <li><span class="font600">Twitter</span>: @tech-book</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div> -->
       </div>
     </div>
   </div>
 </div>
+<section class="bg-light new-books">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <div class="section-title">
+          <h3><%= current_user.username %>さんのお気に入り一覧</h3>
+          <p>お気に入りされた技術書の一覧です。</p>
+        </div>
+      </div>
+    </div>
+    <div class="GridLex-gap-30-wrappper package-grid-item-wrapper">
+      <div class="GridLex-grid-noGutter-equalHeight">
+        <% @books.each do |book| %>
+          <%= render partial:"books/book", locals:{book: book} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<section class="bg-light new-books">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <div class="section-title">
+          <h3><%= current_user.username %>さんの購入一覧</h3>
+          <p>購入された技術書の一覧です。</p>
+        </div>
+      </div>
+    </div>
+    <div class="GridLex-gap-30-wrappper package-grid-item-wrapper">
+      <div class="GridLex-grid-noGutter-equalHeight">
+        <% @books.each do |book| %>
+          <%= render partial:"books/book", locals:{book: book} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<section class="bg-light new-books">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+        <div class="section-title">
+          <h3><%= current_user.username %>さんの出品一覧</h3>
+          <p>出品された技術書の一覧です。</p>
+        </div>
+      </div>
+    </div>
+    <div class="GridLex-gap-30-wrappper package-grid-item-wrapper">
+      <div class="GridLex-grid-noGutter-equalHeight">
+        <% @books.each do |book| %>
+          <%= render partial:"books/book", locals:{book: book} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
 
