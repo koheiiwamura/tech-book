@@ -3,6 +3,9 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.includes(:user).page(params[:page]).per(8)
+    if current_user
+      @like = Like.find_by(user_id: current_user.id, book_id: params[:id])
+    end
   end
 
   def new
@@ -22,6 +25,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    if current_user
+      @like = Like.find_by(user_id: current_user.id, book_id: params[:id])
+    end
   end
 
   def edit

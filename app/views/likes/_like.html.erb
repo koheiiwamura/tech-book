@@ -1,0 +1,27 @@
+<% if user_signed_in? %>
+  <% if book %>
+    <% if book.like_user(current_user.id) %>
+      <%= link_to book_like_path(book,like), method: :delete, remote: true do %>
+        <span class="btn">
+          <i class="fa fa-heart" style="color: red"></i>
+        </span>
+      <% end %>
+    <% else %>
+      <%= link_to book_likes_path(book), method: :post, remote: true do %>
+        <span class="btn">
+          <i class="fa fa-heart-o"></i>
+        </span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <span class="btn">
+      <i class="fa fa-heart-o"></i>
+    </span>
+  <% end %>
+<% end %>
+
+
+
+
+
+

@@ -88,7 +88,7 @@
               <span>or</span>
             </div>
             <div class="form-group">
-              <%= f.text_field :username, autofocus: true, placeholder:"ユーザーネーム", id:"register_username",  class:"form-control", required:"true" %>
+              <%= f.text_field :username, autofocus: true, placeholder:"ユーザーネーム(ニックネームでもOK)", id:"register_username",  class:"form-control", required:"true" %>
             </div>
             <div class="form-group">
               <%= f.email_field :email, autofocus: true, placefolder:"Emailアドレス", id:"register_email",  class:"form-control", placeholder:"Emailアドレス", pettern:"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$", required:"true" %>
