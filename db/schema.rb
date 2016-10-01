@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20161001055410) do
 
   create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
     t.string   "first_name",    limit: 255
     t.string   "last_name",     limit: 255
     t.text     "street_adress", limit: 65535
