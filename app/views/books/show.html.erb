@@ -81,7 +81,7 @@
                     <% if current_user %>
                       <% if current_user.id != @book.user_id %>
                         <div class="text-center pt-10">
-                          <%= link_to "購入ページへ", "#", class:"btn btn-primary btn-full-width" %>
+                          <%= link_to "購入ページへ", new_book_order_path(@book), class:"btn btn-primary btn-full-width" %>
                         </div>
                       <% else %>
                         <div class="text-center pt-10">
