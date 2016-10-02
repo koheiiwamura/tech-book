@@ -20,110 +20,116 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-8">
-        <%= form_for(@user) do |f| %>
-          <div class="payment-box">
-            <div class="payment-header clearfix">
-              <h5 class="heading mt-0">購入者情報</h5>
-            </div>
-            <div class="payment-content">
-              <div class="payment-traveller mb-0">
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">ニックネーム</label>
-                    <div class="col-sm-8 col-md-6">
-                      <!-- <input type="text" class="form-control" value="#{@user.last_name}"> -->
-                      <%= f.text_field :username, class:"form-control", value:"#{@user.username}" %>
+          <%= form_for(@address) do |f| %>
+            <div class="payment-box">
+              <div class="payment-header clearfix">
+                <h5 class="heading mt-0">購入者情報</h5>
+              </div>
+              <div class="payment-content">
+                <div class="payment-traveller mb-0">
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">姓</label>
+                      <div class="col-sm-8 col-md-6">
+                        <!-- <input type="text" class="form-control" value="#{@user.last_name}"> -->
+                        <%= f.text_field :last_name, class:"form-control" %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">名</label>
+                      <div class="col-sm-8 col-md-6">
+                        <!-- <input type="text" class="form-control" value="じょうじ"> -->
+                        <%= f.text_field :first_name, class:"form-control" %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">郵便番号:</label>
+                      <div class="col-sm-8 col-md-6">
+                        <!-- <input type="text" class="form-control" value="150-0042"> -->
+                        <%= f.text_field :postal_code, class:"form-control" %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">住所:</label>
+                      <div class="col-sm-8 col-md-6">
+                        <%= f.text_field :street_address, class:"form-control" %>
+                        <!-- <input type="text" class="form-control" value="東京都渋谷区道玄坂2丁目"> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">電話番号:</label>
+                      <div class="col-sm-8 col-md-6">
+                        <%= f.text_field :phone_number, class:"form-control" %>
+                        <!-- <input type="text" class="form-control" value="東京都渋谷区道玄坂2丁目"> -->
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">姓</label>
-                    <div class="col-sm-8 col-md-6">
-                      <!-- <input type="text" class="form-control" value="#{@user.last_name}"> -->
-                      <%= f.text_field :last_name, class:"form-control", value:"#{@user.last_name}" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">名</label>
-                    <div class="col-sm-8 col-md-6">
-                      <!-- <input type="text" class="form-control" value="じょうじ"> -->
-                      <%= f.text_field :first_name, class:"form-control", value:"#{@user.first_name}" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">郵便番号:</label>
-                    <div class="col-sm-8 col-md-6">
-                      <!-- <input type="text" class="form-control" value="150-0042"> -->
-                      <%= f.text_field :postal_code, class:"form-control", value:"#{@user.postal_code}" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">住所:</label>
-                    <div class="col-sm-8 col-md-6">
-                      <%= f.text_field :street_adress, class:"form-control", value:"#{@user.street_adress}" %>
-                      <!-- <input type="text" class="form-control" value="東京都渋谷区道玄坂2丁目"> -->
-                    </div>
-                  </div>
-                </div>
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">電話番号:</label>
-                    <div class="col-sm-8 col-md-6">
-                      <%= f.text_field :phone_number, class:"form-control", value:"#{@user.phone_number}" %>
-                      <!-- <input type="text" class="form-control" value="東京都渋谷区道玄坂2丁目"> -->
-                    </div>
-                  </div>
+                <div class="text-center">
+                  <%= f.submit "購入者情報を更新", class:"btn btn-primary btn-sm btn-inverse" %>
+                  <!-- <button class="btn btn-primary btn-sm btn-inverse">購入者情報の編集</button> -->
                 </div>
               </div>
-              <div class="text-center">
-                <%= f.submit "購入者情報を更新", class:"btn btn-primary btn-sm btn-inverse" %>
-                <!-- <button class="btn btn-primary btn-sm btn-inverse">購入者情報の編集</button> -->
-              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
           <div class="payment-box">
             <div class="payment-header clearfix">
               <h5 class="heading mt-0">登録情報</h5>
             </div>
-            <div class="payment-content">
-              <div class="payment-traveller mb-0">
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">メールアドレス:</label>
-                    <div class="col-sm-8 col-md-6">
-                      <input type="email" class="form-control" value="jeorge_sekiya@hoge.com">
+            <%= form_for(@user) do |f|%>
+              <div class="payment-content">
+                <div class="payment-traveller mb-0">
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">ニックネーム</label>
+                      <div class="col-sm-8 col-md-6">
+                        <!-- <input type="text" class="form-control" value="#{@user.last_name}"> -->
+                        <%= f.text_field :username, class:"form-control", value:"#{@user.username}" %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">メールアドレス:</label>
+                      <div class="col-sm-8 col-md-6">
+                        <%= f.email_field :email, class:"form-control", value:"#{@user.email}" %>
+                        <!-- <input type="email" class="form-control" value="jeorge_sekiya@hoge.com"> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">現在のパスワード:</label>
+                      <div class="col-sm-8 col-md-6">
+                        <%= f.password_field :password, class:"form-control" %>
+                        <!-- <input type="password" class="form-control" value=""> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-horizontal">
+                    <div class="form-group gap-20">
+                      <label class="col-sm-4 col-md-4 control-label">新しいパスワード:</label>
+                      <div class="col-sm-8 col-md-6">
+                        <!-- <input type="password" class="form-control" value=""> -->
+                        <%= f.password_field :password, class:"form-control" %>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">現在のパスワード:</label>
-                    <div class="col-sm-8 col-md-6">
-                      <input type="password" class="form-control" value="">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-horizontal">
-                  <div class="form-group gap-20">
-                    <label class="col-sm-4 col-md-4 control-label">新しいパスワード:</label>
-                    <div class="col-sm-8 col-md-6">
-                      <input type="password" class="form-control" value="">
-                    </div>
-                  </div>
+                <div class="text-center">
+                  <!-- <button class="btn btn-primary btn-sm btn-inverse">登録情報を更新</button> -->
+                  <%= f.submit "登録情報を更新", class:"btn btn-primary btn-sm btn-inverse" %>
                 </div>
               </div>
-              <div class="text-center">
-                <button class="btn btn-primary btn-sm btn-inverse">登録情報を更新</button>
-              </div>
-            </div>
+            <% end %>
           </div>
         </div>
 

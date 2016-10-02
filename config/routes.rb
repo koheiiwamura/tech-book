@@ -7,11 +7,12 @@ Rails.application.routes.draw do
     resources :selled, only:[:index]
   end
   resources :users, only: [:show, :edit, :update]
+  resources :addresses, only: :update
   resources :tags, only: :index
   root 'books#index'
   resources :books do
+    resources :orders, only: [:new, :create]
     resources :likes, only: [:create, :destroy]
-    resources :comments, only: :create
     post :payment
     post :confirmation
   end

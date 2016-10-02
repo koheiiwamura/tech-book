@@ -43,18 +43,26 @@
                 <h4>登録情報</h4>
               </div>
               <ul class="book-sum-list">
-                <li><span class="font600">名前: </span> <%= @user.username %> 様</li>
-                <li><span class="font600">苗字: </span> <%= @user.last_name %></li>
-                <li><span class="font600">名前: </span> <%= @user.first_name %></li>
-                <li><span class="font600">email: </span> <%= @user.email %></li>
-                <li><span class="font600">お届け先郵便番号: </span><%= @user.postal_code %></li>
-                <li><span class="font600">お届け先住所: </span><%= @user.street_adress %></li>
-                <li><span class="font600">電話番号: </span><%= @user.phone_number %></li>
+                <li><span class="font600">ユーザーネーム: </span> <%= @user.username %> 様</li>
+                <li><span class="font600">email: </span><%= @user.email %></li>
+              </ul>
+            </div>
+            <div class="confirmation-content">
+              <div class="section-title text-left">
+                <h4>登録情報</h4>
+              </div>
+              <ul class="book-sum-list">
+                <li><span class="font600">苗字: </span> <%= @user.address.last_name if @user.address %></li>
+                <li><span class="font600">名前: </span> <%= @user.address.first_name if @user.address %></li>
+                <li><span class="font600">電話番号: </span><%= @user.address.phone_number if @user.address %></li>
+                <li><span class="font600">郵便番号: </span><%= @user.address.postal_code if @user.address %></li>
+                <li><span class="font600">住所: </span><%= @user.address.street_address if @user.address %></li>
               </ul>
             </div>
             <div class="text-right">
-            <%=button_to "登録情報を編集する", edit_user_path(@user), class:"btn btn-primary btn-inverse",method: :get%>
-            <%= link_to "トップページへ", root_path, class: "anchor btn btn-primary"%>
+<!--             <%=button_to "編集する", edit_user_path(@user), class:"btn btn-primary btn-inverse",method: :get%> -->
+            <%= link_to "編集する", edit_user_path(@user), class:"anchor btn btn-primary btn-inverse", method: :get%>
+            <%= link_to "トップページへ", root_path, class:"anchor btn btn-primary"%>
           </div>
           </div>
         </div>
