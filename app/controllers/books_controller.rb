@@ -14,7 +14,6 @@ class BooksController < ApplicationController
   end
 
   def create
-    binding.pry
     @book = Book.new(create_params)
     if @book.save
       redirect_to root_path,notice:"投稿しました"
