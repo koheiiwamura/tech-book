@@ -59,11 +59,7 @@
                           <li><span class="font600">出品者: </span><a href="#"><%= @book.user.username %>さん</a></li>
                           <li><span class="font600">本体価格:</span><%= @book.price %>円</li>
                           <li><span class="font600">送料:</span><%= @book.postage %>円</li>
-                          <li><span class="font600">カテゴリ:</span>
-                            <% @book.tags.each do |tag| %>
-                                <%= tag.name %>
-                            <% end %>
-                          </li>
+                          <li><span class="font600">カテゴリ:</span><%= @book.category %></li>
                           <li><span class="font600">状態: </span><%= @book.state %></li>
                         </ul>
                       </div>

@@ -51,10 +51,10 @@ class BooksController < ApplicationController
 
   private
   def create_params
-    params.require(:book).permit(:image,:title,:content,:state,:price,:postage).merge(user_id:current_user.id, tag_list: params[:book][:tag])
+    params.require(:book).permit(:image,:title,:content, :category, :state,:price,:postage).merge(user_id:current_user.id)
   end
   def update_params
-    params.require(:book).permit(:image,:title,:content,:state,:price,:postage).merge(user_id:current_user.id, tag_list: params[:book][:tag])
+    params.require(:book).permit(:image,:title,:content, :category, :state,:price,:postage).merge(user_id:current_user.id)
   end
   def set_book
     @book = Book.find(params[:id])

@@ -55,7 +55,7 @@
                             <li><span class="font600">本体価格:</span><%= f.text_field :price, placeholder: "本体価格", required: true, type:"number" %></li>
                             <li><span class="font600">送料:</span><%= f.text_field :postage, placeholder: "送料",required: true, type:"number" %></li>
                             <li><span class="font600">カテゴリ:</span>
-                              <%= select_tag "book[tag][]", options_for_select(["HTML CSS", "Ruby", "JavaScript", "Ruby on Rails", "PHP", "Java"]) %>
+                              <%= f.select :category, options_for_select(["HTML CSS", "Ruby", "JavaScript", "Ruby on Rails", "PHP", "Java"]) %>
                             </li>
                             <li><span class="font600">状態: </span><%= f.text_field :state, placeholder: "本の状態", required: true %></li>
                           </ul>
