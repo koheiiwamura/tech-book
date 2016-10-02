@@ -1,6 +1,9 @@
 class Book < ActiveRecord::Base
+  has_many :sellers, :through => :order
+  has_many :buyers, :through => :order
   belongs_to :user
   has_many :likes, dependent: :destroy
+  has_many :order
   acts_as_taggable_on :tags
   acts_as_taggable
   mount_uploader :image, ImageUploader
