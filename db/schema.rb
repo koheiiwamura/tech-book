@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001082837) do
+ActiveRecord::Schema.define(version: 20161002074112) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -45,13 +45,24 @@ ActiveRecord::Schema.define(version: 20161001082837) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.string   "first_name",     limit: 255
+    t.string   "last_name",      limit: 255
+    t.text     "street_address", limit: 65535
+    t.string   "postal_code",    limit: 255
+    t.string   "phone_number",   limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "email",          limit: 255
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.integer  "book_id",    limit: 4
-    t.integer  "seller_id",  limit: 4
-    t.integer  "buyer_id",   limit: 4
-    t.integer  "voucher_id", limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "book_id",         limit: 4
+    t.integer  "seller_id",       limit: 4
+    t.integer  "buyer_id",        limit: 4
+    t.integer  "order_detail_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "taggings", force: :cascade do |t|
