@@ -87,6 +87,9 @@
         <% end %>
       </div>
     </div>
+    <div class="text-center">
+      <%= paginate @favorite_books %>
+    </div>
   </div>
 <section class="bg-light new-books">
   <div class="container">
@@ -105,6 +108,9 @@
         <% end %>
       </div>
     </div>
+    <div class="text-center">
+      <%= paginate @bought_books %>
+    </div>
   </div>
 <section class="bg-light new-books">
   <div class="container">
@@ -122,6 +128,9 @@
           <%= render partial:"books/book", locals:{book: book} %>
         <% end %>
       </div>
+    </div>
+    <div class="text-center">
+      <%= paginate @selled_books %>
     </div>
   </div>
 </section>

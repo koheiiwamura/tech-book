@@ -1,6 +1,13 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
 ja:
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
   devise:
     confirmations:
       confirmed: "アカウントが確認されました。ログインしています。"

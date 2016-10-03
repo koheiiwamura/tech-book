@@ -49,5 +49,6 @@ end
 gem 'devise'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'pry-rails'
+gem "bootstrap"
 gem 'kaminari'
 gem 'carrierwave'
