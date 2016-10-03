@@ -76,9 +76,15 @@
                     </div>
                     <% if current_user %>
                       <% if current_user.id != @book.user_id %>
-                        <div class="text-center pt-10">
-                          <%= link_to "購入ページへ", new_book_order_path(@book), class:"btn btn-primary btn-full-width" %>
-                        </div>
+                        <% if @book.orders.present? %>
+                          <div class="text-center pt-10">
+                            <div class="btn btn-primary btn-full-width">売り切れです</div>
+                          </div>
+                        <% else %>
+                          <div class="text-center pt-10">
+                            <%= link_to "購入ページへ", new_book_order_path(@book), class:"btn btn-primary btn-full-width" %>
+                          </div>
+                        <% end %>
                       <% else %>
                         <div class="text-center pt-10">
                           <%= link_to "編集する", edit_book_path(@book), class:"btn btn-primary btn-full-width" %>

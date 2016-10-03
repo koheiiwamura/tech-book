@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   def show
-    @books = @user.like_books
+    @favorite_books = @user.like_books.order("id DESC")
+    @selled_books = @user.books.order("id DESC")
+    @bought_books = @user.books_of_buyer.order("id DESC")
   end
   def edit
     @address = Address.where(user_id: @user.id).first_or_create

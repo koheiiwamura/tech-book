@@ -1,9 +1,9 @@
 class Book < ActiveRecord::Base
-  has_many :sellers, :through => :order
-  has_many :buyers, :through => :order
+  has_many :sellers, :through => :orders
+  has_many :buyers, :through => :orders
+  has_many :orders
   belongs_to :user
   has_many :likes, dependent: :destroy
-  has_many :order
   mount_uploader :image, ImageUploader
 
   def total_price(book)
