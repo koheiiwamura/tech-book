@@ -3,13 +3,13 @@
     <% if book.like_user(current_user.id) %>
       <%= link_to book_like_path(book,like), method: :delete, remote: true do %>
         <span class="btn">
-          <i class="fa fa-heart" style="color: red"></i>
+          <i class="fa fa-heart" style="color: red"><%= book.likes_count %></i>   いいね解除！
         </span>
       <% end %>
     <% else %>
       <%= link_to book_likes_path(book), method: :post, remote: true do %>
         <span class="btn">
-          <i class="fa fa-heart-o"></i>
+          <i class="fa fa-heart-o"><%= book.likes_count %></i>   いいね！
         </span>
       <% end %>
     <% end %>
