@@ -20,7 +20,13 @@
           </div>
         </div> -->
         <div class="absolute-in-content">
-          <span class="btn"><i class="fa fa-heart-o" style="color: red"></i></span>
+          <% if book.likes_count != 0 %>
+            <span class="btn likes_count"><i class="fa fa-heart-o" style="color: red"></i>
+              <%= book.likes_count %>
+            </span>
+          <% else %>
+            <span class="btn likes_count"><i class="fa fa-heart-o" style="color: white"></i></span>
+          <% end %>
           <div class="price"><%= book.total_price(book) %>円</div>
         </div>
       </div>
