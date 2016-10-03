@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Book.all.includes(:user).page(params[:page]).per(8)
+    @books = Book.all.includes(:user).page(params[:page]).per(8).order("id DESC")
     if current_user
       @like = Like.find_by(user_id: current_user.id, book_id: params[:id])
     end

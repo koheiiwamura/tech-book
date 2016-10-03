@@ -14,3 +14,6 @@
 
 # Ignore image.
 /public/uploads/
+
+# Ignore image.
+/app/assets/images/
