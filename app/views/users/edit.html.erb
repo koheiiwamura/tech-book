@@ -15,6 +15,15 @@
       </div>
     </div>
   </div>
+  <div class="breadcrumb-wrapper bg-light-2">
+    <div class="container">
+      <ol class="breadcrumb-list booking-step">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "マイページ",user_path(current_user) %></li>
+        <li><span>ユーザー登録編集</span></li>
+      </ol>
+    </div>
+  </div>
   <!-- end Page title -->
   <div class="content-wrapper">
     <div class="container">

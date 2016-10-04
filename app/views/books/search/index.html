@@ -16,8 +16,18 @@
   <div class="breadcrumb-wrapper bg-light-2">
     <div class="container">
       <ol class="breadcrumb-list booking-step">
-        <li><a href="">トップ</a></li>
-        <li><a href="#">検索結果</a></li>
+        <li><%= link_to "Home", root_path %></li>
+        <% if params[:category].present? %>
+          <% if params[:word].present? %>
+            <li><span>カテゴリ：<%= params[:category] %>,  キーワード：<%= params[:word] %></span></li>
+          <% else %>
+            <li><span>カテゴリ: <%= params[:category] %></span></li>
+          <% end %>
+        <% else %>
+          <% if params[:word].present? %>
+            <li><span>キーワード: <%= params[:word] %></span></li>
+          <% end %>
+        <% end %>
       </ol>
     </div>
   </div>
