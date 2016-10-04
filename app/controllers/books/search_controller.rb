@@ -14,7 +14,6 @@ class Books::SearchController < ApplicationController
     else
       if params[:word].present?
         @books = Book.where('title LIKE(?)',"%#{params[:word]}%").page(params[:page]).per(9)
-      else
       end
     end
   end
