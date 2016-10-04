@@ -5,9 +5,9 @@
   <div class="breadcrumb-wrapper bg-light-2">
     <div class="container">
       <ol class="breadcrumb-list booking-step">
-        <li><a href="">トップ</a></li>
-        <li><a href="#">詳細ページ</a></li>
-        <li><a href="#">購入ページ</a></li>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "詳細ページ", book_path(@book) %></li>
+        <li><%= link_to "購入手続き", new_book_order_path(@book) %></li>
         <li><span>完了画面</span></li>
       </ol>
     </div>

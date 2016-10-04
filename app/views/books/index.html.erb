@@ -138,9 +138,9 @@
         <div class="container">
           <div class="flex-row flex-align-middle">
             <div class="flex-shrink flex-columns">
-              <a class="navbar-logo" href="index.html">
+              <%= link_to root_path, class:"navbar-logo" do%>
                 <%= image_tag("techbook_logo.png", alt: "Logo") %>
-              </a>
+              <% end %>
             </div>
             <div class="flex-columns">
               <div class="pull-right">

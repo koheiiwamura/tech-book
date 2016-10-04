@@ -12,20 +12,13 @@
           <div class="flex-column flex-md-4 flex-align-bottom flex-sm-12 mt-20-sm">
             <div class="text-right text-left-sm">
                 <%= link_to "トップページへ", root_path, class:"anchor btn btn-primary" %>
+                <%= link_to "戻る", :back, class:"anchor btn btn-primary" %>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- end Page title -->
-    <div class="breadcrumb-wrapper bg-light-2">
-      <div class="container">
-        <ol class="breadcrumb-list">
-          <li><a href="#">Home</a></li>
-          <li><span><%= @book.title %></span></li>
-        </ol>
-      </div>
-    </div>
     <div class="content-wrapper">
       <div class="container">
         <div class="row">
