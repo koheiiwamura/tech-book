@@ -43,14 +43,14 @@
             </div>
           </aside>
         </div>
-        <% if @books %>
+        <% if @books && @books.count != 0 %>
           <div class="col-sm-8 col-md-9">
             <div class="sorting-wrappper">
               <div class="sorting-header">
                 <p class="sorting-lead"><%= @books.total_count %>件の検索結果が見つかりました。</p>
               </div>
             </div>
-            <div class="package-list-item-wrapper on-page-result-page clearfix">
+            <div class="package-list-item-wrapper on-page-result-page clearfix GridLex-grid-noGutter-equalHeight">
                   <% @books.each do |book| %>
                     <%= render partial:"books/search_book", locals:{book: book} %>
                   <% end %>
