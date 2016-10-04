@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :addresses, only: :update
   resources :tags, only: :index
   root 'books#index'
+  get 'books/search' => 'books/search#index'
   resources :books do
     resources :orders, only: [:new, :create]
     resources :likes, only: [:create, :destroy]
