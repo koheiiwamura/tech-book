@@ -192,27 +192,19 @@
           <div class="inner">
             <div class="column-item">
               <div class="form-group">
-                <select name="destination" class="select2-multi form-control" data-placeholder="カテゴリを選択">
-                  <option value="">カテゴリを選択</option>
-                  <option value="0">HTML CSS</option>
-                  <option value="ruby">Ruby</option>
-                  <option value="javascript">JavaScript</option>
-                  <option value="rails">Ruby on Rails</option>
-                  <option value="php">PHP</option>
-                  <option value="java">Java</option>
-                  <option value="php">PHP</option>
-                </select>
+                <%= form_tag books_search_path, method: :get %>
+                <%= select_tag :category, options_for_select(["HTML CSS", "Ruby", "JavaScript", "Ruby on Rails", "PHP", "Java"]), class:"select select2-multi form-control", include_blank:true, prompt:"カテゴリを選択"%>
               </div>
             </div>
             <div class="column-item" id="long-column-item">
               <div class="form-group">
-                <input name="month" class="form-control" placeholder="キーワード">
+                <%= text_field :"", :word, class: "form-control", placeholder: "キーワード" %>
                 </input>
               </div>
             </div>
             <div class="column-item for-btn">
               <div class="form-group">
-                <a href="#" class="btn btn-primary btn-block">書籍を検索</a>
+                <%= submit_tag "書籍を検索", class:"btn btn-primary btn-block" %>
               </div>
             </div>
           </div>
@@ -231,8 +223,10 @@
         </div>
         <div class="GridLex-gap-30-wrappper package-grid-item-wrapper">
           <div class="GridLex-grid-noGutter-equalHeight">
-            <% @books.each do |book| %>
-             <%= render partial:"book", locals:{book: book} %>
+            <% if @books %>
+              <% @books.each do |book| %>
+               <%= render partial:"book", locals:{book: book} %>
+              <% end %>
             <% end %>
           </div>
         </div>
