@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
   def edit
     @address = Address.where(user_id: @user.id).first_or_create
+    @bank = Bank.where(user_id: @user.id).first_or_create
   end
   def update
     if @user.update(update_params)
