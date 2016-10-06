@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :update]
   resources :addresses, only: :update
-  resources :banks, only: :update
   resources :tags, only: :index
   root 'books#index'
   get 'books/search' => 'books/search#index'

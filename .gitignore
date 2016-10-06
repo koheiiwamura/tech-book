@@ -17,3 +17,6 @@
 
 # Ignore image.
 /app/assets/images/
+
+# Ignore webpay.
+/config/initializers/

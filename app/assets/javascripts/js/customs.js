@@ -430,7 +430,6 @@ jQuery(function($) {
     }
 
     $(document).ready(function() {
-      
       $('#instagram').on('didLoadInstagram', didLoadInstagram);
       $('#instagram').instagram({
       count: 20,
@@ -439,5 +438,13 @@ jQuery(function($) {
       });
 
     });
+
+    $(".payment").change(function(){
+      if ($(this).val() == "クレジットカード") {
+        $(".webpay-button").parent(".center").removeClass("hide")
+      } else {
+        $(".webpay-button").parent(".center").addClass("hide")
+      }
+    })
 
 })(jQuery);

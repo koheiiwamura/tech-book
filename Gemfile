@@ -52,3 +52,4 @@ gem 'pry-rails'
 gem "bootstrap"
 gem 'kaminari'
 gem 'carrierwave'
+gem 'webpay'
