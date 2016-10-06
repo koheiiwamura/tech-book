@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :books
   has_many :likes
   has_one :address
+  has_one :bank
   has_many :orders_of_seller, :class_name => 'Order', :foreign_key => 'seller_id'
   has_many :orders_of_buyer, :class_name => 'Order', :foreign_key => 'buyer_id'
   has_many :books_of_seller, :through => :orders_of_seller, :source => 'book'

@@ -19,75 +19,87 @@
             <h3><%= @book.title %><small>を購入します。</small></h3>
           </div>
           <div class="payment-container">
-              <div class="payment-box">
-                <div class="payment-header clearfix">
-                  <div class="number">
-                    !
-                  </div>
-                  <h5 class="heading mt-0">お届け先詳細</h5>
-                  <p><spna class="necessary-info">*必須情報</spna></p>
+            <div class="payment-box">
+              <div class="payment-header clearfix">
+                <div class="number">
+                  !
                 </div>
-                <%= form_for(@order, url: book_orders_path(book_id: @book.id)) do |f| %>
-                  <div class="payment-content">
-                    <div class="payment-traveller">
-                      <div class="row gap-0">
-                      </div>
-                      <div class="form-horizontal">
-                        <div class="form-group gap-20">
-                          <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>姓:</label>
-                          <div class="col-sm-6 col-md-6">
-                            <!-- <input type="text" class="form-control" value=<%=@address.last_name%> -->
-                            <%= text_field_tag "order_detail[last_name]", "#{@address.last_name}", class:"form-control" %>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-horizontal">
-                        <div class="form-group gap-20">
-                          <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>名:</label>
-                          <div class="col-sm-6 col-md-6">
-                            <!-- <input type="text" class="form-control" value=<%=@address.first_name%> -->
-                            <%= text_field_tag "order_detail[first_name]", "#{@address.first_name}", class:"form-control" %>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-horizontal">
-                        <div class="form-group gap-20">
-                          <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>メールアドレス:</label>
-                          <div class="col-sm-6 col-md-6">
-                            <!-- <input type="email" class="form-control" value=<%=current_user.email%> -->
-                            <%= text_field_tag "order_detail[email]", "#{current_user.email}", class:"form-control" %>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-horizontal">
-                        <div class="form-group gap-20">
-                          <label class="col-sm-4 col-md-4 control-label">電話番号:</label>
-                          <div class="col-sm-6 col-md-6">
-                            <%= text_field_tag "order_detail[phone_number]", "#{@address.phone_number}", class:"form-control" %>
-                            <!-- <input type="email" class="form-control" value="<%=@address.phone_number%>"> -->
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-horizontal">
-                        <div class="form-group gap-20">
-                          <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>郵便番号:</label>
-                          <div class="col-sm-6 col-md-6">
-                            <%= text_field_tag "order_detail[postal_code]", "#{@address.postal_code}", class:"form-control" %>
-                            <!-- <input type="email" class="form-control" value=<%=@address.postal_code%> -->
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-horizontal">
-                        <div class="form-group gap-20">
-                          <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>住所:</label>
-                          <div class="col-sm-6 col-md-6">
-                            <%= text_field_tag "order_detail[street_address]", "#{@address.street_address}", class:"form-control" %>
-                            <!-- <input type="email" class="form-control" value=<%=@address.street_address%> -->
-                          </div>
+                <h5 class="heading mt-0">お届け先詳細</h5>
+                <p><spna class="necessary-info">*必須情報</spna></p>
+              </div>
+              <%= form_for(@order, url: book_orders_path(book_id: @book.id)) do |f| %>
+                <div class="payment-content">
+                  <div class="payment-traveller">
+                    <div class="row gap-0">
+                    </div>
+                    <div class="form-horizontal">
+                      <div class="form-group gap-20">
+                        <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>姓:</label>
+                        <div class="col-sm-6 col-md-6">
+                          <!-- <input type="text" class="form-control" value=<%=@address.last_name%> -->
+                          <%= text_field_tag "order_detail[last_name]", "#{@address.last_name}", class:"form-control" %>
                         </div>
                       </div>
                     </div>
+                    <div class="form-horizontal">
+                      <div class="form-group gap-20">
+                        <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>名:</label>
+                        <div class="col-sm-6 col-md-6">
+                          <!-- <input type="text" class="form-control" value=<%=@address.first_name%> -->
+                          <%= text_field_tag "order_detail[first_name]", "#{@address.first_name}", class:"form-control" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-horizontal">
+                      <div class="form-group gap-20">
+                        <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>メールアドレス:</label>
+                        <div class="col-sm-6 col-md-6">
+                          <!-- <input type="email" class="form-control" value=<%=current_user.email%> -->
+                          <%= text_field_tag "order_detail[email]", "#{current_user.email}", class:"form-control" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-horizontal">
+                      <div class="form-group gap-20">
+                        <label class="col-sm-4 col-md-4 control-label">電話番号:</label>
+                        <div class="col-sm-6 col-md-6">
+                          <%= text_field_tag "order_detail[phone_number]", "#{@address.phone_number}", class:"form-control" %>
+                          <!-- <input type="email" class="form-control" value="<%=@address.phone_number%>"> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-horizontal">
+                      <div class="form-group gap-20">
+                        <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>郵便番号:</label>
+                        <div class="col-sm-6 col-md-6">
+                          <%= text_field_tag "order_detail[postal_code]", "#{@address.postal_code}", class:"form-control" %>
+                          <!-- <input type="email" class="form-control" value=<%=@address.postal_code%> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-horizontal">
+                      <div class="form-group gap-20">
+                        <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>住所:</label>
+                        <div class="col-sm-6 col-md-6">
+                          <%= text_field_tag "order_detail[street_address]", "#{@address.street_address}", class:"form-control" %>
+                          <!-- <input type="email" class="form-control" value=<%=@address.street_address%> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-horizontal">
+                      <div class="form-group gap-20">
+                        <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>支払い方法:</label>
+                        <div class="col-sm-6 col-md-6">
+                          <%= f.select :payment_method, options_for_select(["銀行振り込み", "クレジットカード"]), {},{ class: "form-control payment" } %>
+                          <!-- <input type="email" class="form-control" value=<%=@address.street_address%> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="center hide">
+                      <script src="https://checkout.webpay.jp/v1/" data-submit-text="カード決済で確定する" class="webpay-button" data-key="<%= WEBPAY_PUBLIC_KEY %>" data-partial="true"></script>
+                    </div>
                   </div>
+                </div>
               </div>
             </div>
             <div class="checkbox-block">
@@ -96,7 +108,6 @@
             </div>
             <div class="row mt-20 clearfix">
               <div class="col-sm-12 col-md-12">
-                <!-- <button class="btn btn-primary">注文を確定する</button> -->
                 <%= f.submit "注文を確定する", class:"btn btn-primary" %>
               </div>
             </div>

@@ -55,18 +55,34 @@
                 <li><span class="font600">email: </span><%= @user.email %></li>
               </ul>
             </div>
-            <div class="confirmation-content">
-              <div class="section-title text-left">
-                <h4>登録情報</h4>
+            <% if @user.address %>
+              <div class="confirmation-content">
+                <div class="section-title text-left">
+                  <h4>購入者情報</h4>
+                </div>
+                <ul class="book-sum-list">
+                  <li><span class="font600">苗字: </span> <%= @user.address.last_name %></li>
+                  <li><span class="font600">名前: </span> <%= @user.address.first_name %></li>
+                  <li><span class="font600">電話番号: </span><%= @user.address.phone_number %></li>
+                  <li><span class="font600">郵便番号: </span><%= @user.address.postal_code %></li>
+                  <li><span class="font600">住所: </span><%= @user.address.street_address %></li>
+                </ul>
               </div>
-              <ul class="book-sum-list">
-                <li><span class="font600">苗字: </span> <%= @user.address.last_name if @user.address %></li>
-                <li><span class="font600">名前: </span> <%= @user.address.first_name if @user.address %></li>
-                <li><span class="font600">電話番号: </span><%= @user.address.phone_number if @user.address %></li>
-                <li><span class="font600">郵便番号: </span><%= @user.address.postal_code if @user.address %></li>
-                <li><span class="font600">住所: </span><%= @user.address.street_address if @user.address %></li>
-              </ul>
-            </div>
+            <% end %>
+            <%if @user.bank %>
+              <div class="confirmation-content">
+                <div class="section-title text-left">
+                  <h4>売上金受け取り口座情報</h4>
+                </div>
+                <ul class="book-sum-list">
+                  <li><span class="font600">口座名: </span> <%= @user.bank.bank_name %></li>
+                  <li><span class="font600">支店名: </span> <%= @user.bank.branch_name %></li>
+                  <li><span class="font600">口座種別: </span><%= @user.bank.account_type %></li>
+                  <li><span class="font600">口座番号: </span><%= @user.bank.number %></li>
+                  <li><span class="font600">口座名義: </span><%= @user.bank.holder_name %></li>
+                </ul>
+              </div>
+            <% end %>
             <div class="text-right">
 <!--             <%=button_to "編集する", edit_user_path(@user), class:"btn btn-primary btn-inverse",method: :get%> -->
             <%= link_to "編集する", edit_user_path(@user), class:"anchor btn btn-primary btn-inverse", method: :get%>
