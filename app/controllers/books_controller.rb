@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update,:destroy]
+  before_action :check_orderd, only: [:edit, :update]
 
   def index
     @books = Book.all.includes(:user).page(params[:page]).per(8).order("id DESC")
@@ -60,6 +62,15 @@ class BooksController < ApplicationController
   def set_book
     @book = Book.find(params[:id])
   end
-end
+  def check_user
+    if @book.user.id != current_user.id
+      redirect_to root_path, alert:"出品者以外編集できません"
+    end
+  end
+  def check_orderd
+    if @book.orders.present?
+      redirect_to root_path, alert:"取引が終了のため、更新できません"
+    end
+  end
 
-# :images_attributes: [:image]
+end

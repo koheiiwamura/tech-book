@@ -1,17 +1,28 @@
 class BanksController < ApplicationController
 
-  def update
-    @bank = Bank.find(params[:id])
-    if @bank.update(update_params)
-      redirect_to :controller => 'users', :action => 'show', notice:"更新しました"
+  def create
+    @bank = Bank.new(bank_params)
+    if @bank.save
+      redirect_to user_path(current_user.id), notice:"銀行口座を登録しました"
     else
       flash[:alert] = "更新できませんでした"
       render "user/edit"
     end
   end
 
+
+  def update
+    @bank = Bank.find(params[:id])
+    if @bank.update(bank_params)
+      redirect_to :controller => 'users', :action => 'show', notice:"銀行口座を更新しました"
+    else
+      flash[:alert] = "銀行口座を更新できませんでした"
+      render "user/edit"
+    end
+  end
+
   private
-  def update_params
-    params.require(:bank).permit(:bank_name, :branch_name, :account_type, :number, :holder_name)
+  def bank_params
+    params.require(:bank).permit(:bank_name, :branch_name, :account_type, :number, :holder_name).merge(user_id: current_user.id)
   end
 end
