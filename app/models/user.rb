@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
          :authentication_keys => [:username, :email]
 
   #usernameを必須とする
-  validates_uniqueness_of :username
-  validates_presence_of :username
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true, length: {minimum:8}
   has_many :books
   has_many :likes
   has_one :address

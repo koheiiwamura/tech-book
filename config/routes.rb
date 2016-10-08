@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :update]
   resources :addresses, only: :update
+  resources :banks, only: [:create, :update]
   root 'books#index'
   get 'books/search' => 'books/search#index'
   resources :books do
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
     post :payment
     post :confirmation
   end
+  get '/books/:book_id/orders' => redirect_to :root_path
 end

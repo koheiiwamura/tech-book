@@ -6,6 +6,12 @@ class Book < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   mount_uploader :image, ImageUploader
 
+  validates :title, presence: true
+  validates :content, presence: true
+  validates :state, presence: true
+  validates :price, presence: true
+  validates :postage, presence: true
+
   def total_price(book)
     if book.price && book.postage
       book.price + book.postage

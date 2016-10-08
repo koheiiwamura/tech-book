@@ -49,7 +49,9 @@
                     <div class="row">
                       <div class="col-sm-4 col-sm-3">
                         <ul class="list-info no-icon bb-dotted">
-                          <li><span class="font600">出品者: </span><a href="#"><%= @book.user.username %>さん</a></li>
+                          <li><span class="font600">出品者: </span>
+                            <%= link_to "#{@book.user.username}さん", user_path(@book.user) %>
+                          </li>
                           <li><span class="font600">本体価格:</span><%= @book.price %>円</li>
                           <li><span class="font600">送料:</span><%= @book.postage %>円</li>
                           <li><span class="font600">カテゴリ:</span><%= @book.category %></li>
