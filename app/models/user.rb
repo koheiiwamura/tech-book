@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :authentication_keys => [:username]
+         :authentication_keys => [:username, :email]
 
   #usernameを必須とする
   validates_uniqueness_of :username
