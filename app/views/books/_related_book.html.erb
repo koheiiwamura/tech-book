@@ -4,7 +4,7 @@
       <div class="image">
         <%= link_to image_tag("#{book.image}"), book_path(book.id) %>
         <div class="absolute-in-image">
-          <% if book.orders.present? %>
+          <% if book.order.present? %>
             <%= image_tag "/assets/sold.png", class:"soldout" %>
           <% end %>
           <div class="duration">

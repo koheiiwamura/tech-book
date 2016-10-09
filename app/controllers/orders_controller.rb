@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
   end
 
   def check_orderd
-    if Book.find(params[:book_id]).orders.present?
+    if Book.find(params[:book_id]).order.present?
       redirect_to root_path, alert: "この本は売り切れです"
     end
   end
