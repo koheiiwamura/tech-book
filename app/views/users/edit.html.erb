@@ -215,20 +215,26 @@
                 <h4 class="sidebar-title">購入履歴</h4>
                 <div class="sidebar-module-inner">
                   <ul class="sidebar-post">
-                    <li class="clearfix">
-                      <a href="blog-single.html">
-                        <div class="image">
-                          <img src="images/books/book1.png" alt="Popular Post" />
-                        </div>
-                        <div class="content">
-                          <h6>ランディングページ・デザインメソッド</h6>
-                          <p class="recent-post-sm-meta"><i class="fa fa-clock-o mr-5"></i>June 01, 2016</p>
-                        </div>
-                      </a>
-                    </li>
+                    <% @books.each do |book|  %>
+                      <li class="clearfix">
+                        <a href="blog-single.html">
+                          <div class="image">
+                            <%= link_to image_tag("#{book.image}", alt:'Popular Post'), book_path(book) %>
+                            <!-- <img src="images/books/book1.png" alt="Popular Post" /> -->
+                          </div>
+                          <div class="content">
+                            <h6><%= book.title %></h6>
+                            <p class="recent-post-sm-meta"><i class="fa fa-clock-o mr-5"></i>
+                              <%= book.order.created_at.strftime("%b %d, %Y")%>
+                            </p>
+                          </div>
+                        </a>
+                      </li>
+                    <% end %>
                   </ul>
                 </div>
               </div>
+              <%= paginate @books %>
               <div class="clear"></div>
             </div>
           </aside>
