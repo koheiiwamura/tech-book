@@ -11,10 +11,9 @@ Rails.application.routes.draw do
   root 'books#index'
   get 'books/search' => 'books/search#index'
   resources :books do
-    resources :orders, only: [:new, :create]
+    resources :orders, only: [:new, :create, :show]
     resources :likes, only: [:create, :destroy]
     post :payment
     post :confirmation
   end
-  get '/books/:book_id/orders' => redirect_to :root_path
 end
