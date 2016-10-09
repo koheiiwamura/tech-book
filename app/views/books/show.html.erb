@@ -71,7 +71,7 @@
                     </div>
                     <% if current_user %>
                       <% if current_user.id != @book.user_id %>
-                        <% if @book.orders.present? %>
+                        <% if @book.order.present? %>
                           <div class="text-center pt-10">
                             <div class="btn btn-primary btn-full-width">売り切れです</div>
                           </div>

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def edit
     @address = Address.where(user_id: @user.id).first_or_create
     @bank = Bank.where(user_id: @user.id).first_or_create
+    @books = @user.books_of_buyer.page(params[:page]).per(8).order("id DESC")
   end
   def update
     if @user.update(update_params)

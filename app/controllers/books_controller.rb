@@ -68,7 +68,7 @@ class BooksController < ApplicationController
     end
   end
   def check_orderd
-    if @book.orders.present?
+    if @book.order.present?
       redirect_to root_path, alert:"取引が終了のため、更新できません"
     end
   end

@@ -1,7 +1,7 @@
 class Book < ActiveRecord::Base
-  has_many :sellers, :through => :orders
-  has_many :buyers, :through => :orders
-  has_many :orders
+  has_one :seller, :through => :order
+  has_one :buyer, :through => :order
+  has_one :order
   belongs_to :user
   has_many :likes, dependent: :destroy
   mount_uploader :image, ImageUploader
