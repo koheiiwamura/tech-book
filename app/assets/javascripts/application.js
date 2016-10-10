@@ -32,4 +32,5 @@
 //= require js/validator.min.js
 //= require js/jquery.raty.js
 //= require js/customs.js
+//= require js/preview.js
 
