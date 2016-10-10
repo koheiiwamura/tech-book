@@ -103,6 +103,36 @@
                     </div>
                   </div>
                 </div>
+                <div class="detail-content">
+                  <div class="section-title text-left">
+                    <% if @book.user == current_user %>
+                      <h4>他ユーザーからのコメント</h4>
+                    <% else %>
+                      <h4>出品者へコメント</h4>
+                    <% end %>
+                  </div>
+                  <div class="row proto-comments">
+                    <div class="col-md-8">
+                      <% if user_signed_in? %>
+                        <%= form_for([@book,@comment],remote: true) do |f| %>
+                          <p>※相手にとって不快なコメントは避けましょう。利用制限や退会処分となることがあります。</p>
+                          <div class="row">
+                            <div class="form-group col-md-10">
+                              <%= f.text_area :text, class: "form-control", rows: "2", cols: "50", placeholder: "コメント" %>
+                            </div>
+                            <div class="form-group col-md-2">
+                              <%= f.submit "送信", :class=>"button btn btn-primary" %>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                      <div id="comment_index">
+                        <%= render partial:"comments/comment", locals:{comments: @comments, book: @book} %>
+                      </div>
+                      <%= paginate @comments %>
+                    </div>
+                  </div>
+                </div>
                 <div class="call-to-action">
                   <a href="#" class="btn btn-primary btn-sm btn-inverse">お問い合わせ</a>
                 </div>
@@ -118,5 +148,3 @@
      <a href="#"><i class="fa fa-angle-up"></i></a>
   </div>
   <!-- end Back To Top -->
-
-
