@@ -15,7 +15,7 @@
 //= require jquery.turbolinks
 //= require js/jquery-1.11.3.min.js
 //= require js/jquery-migrate-1.2.1.min.js
-//= require bootstrap/js/bootstrap.js
+//= require js/bootstrap.js
 //= require js/jquery.waypoints.min.js
 //= require js/jquery.easing.1.3.js
 //= require js/SmoothScroll.min.js
