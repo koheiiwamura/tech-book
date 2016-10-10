@@ -30,6 +30,8 @@ class BooksController < ApplicationController
       @like = Like.find_by(user_id: current_user.id, book_id: params[:id])
     end
     @related_books = Book.where(category: @book.category).where.not(id: @book.id).order("RAND()").limit(3)
+    @comment = Comment.new
+    @comments = @book.comments.includes(:user).page(params[:page]).per(8).order("id DESC")
   end
 
   def edit

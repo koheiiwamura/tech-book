@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :authentication_keys => [:username, :email]
+         :authentication_keys => [:username]
 
   #usernameを必須とする
   validates :username, presence: true, uniqueness: true
@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum:8}
   has_many :books
   has_many :likes
+  has_many :comments
   has_one :address
   has_one :bank
   has_many :orders_of_seller, :class_name => 'Order', :foreign_key => 'seller_id'
@@ -21,22 +22,22 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, ImageUploader
 
   #usernameを利用してログインするようにオーバーライド
-  def self.find_first_by_auth_conditions(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      #認証の条件式を変更する
-      where(conditions).where(["username = :value", { :value => username }]).first
-    else
-      where(conditions).first
-    end
-  end
+#   def self.find_first_by_auth_conditions(warden_conditions)
+#     conditions = warden_conditions.dup
+#     if login = conditions.delete(:login)
+#       #認証の条件式を変更する
+#       where(conditions).where(["username = :value", { :value => username }]).first
+#     else
+#       where(conditions).first
+#     end
+#   end
 
-  #emailを不要とする
-  def email_required?
-    false
-  end
+#   #emailを不要とする
+#   def email_required?
+#     false
+#   end
 
-  def email_changed?
-    false
-  end
+#   def email_changed?
+#     false
+#   end
 end
