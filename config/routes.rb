@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # root 'devise/sessions#create', as: 'user_session_path'
-  # get "/users/sign_in" => redirect(""), :defaults  => { :alert => 'aaaaa'  }
   devise_for :users
   namespace :users do
     resources :selled, only:[:index]
@@ -13,6 +11,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :orders, only: [:new, :create, :show]
     resources :likes, only: [:create, :destroy]
+    resources :comments, only: :create
     post :payment
     post :confirmation
   end
