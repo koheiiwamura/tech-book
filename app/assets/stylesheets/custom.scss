@@ -131,7 +131,6 @@
 
 .seller-comment-body{
   position:relative;
-  right:30px;
   width:350px;
   background-color:#F5F5F5;
 }
@@ -148,7 +147,6 @@
 }
 .other-comment-body{
   position:relative;
-  left:10px;
   width:350px;
   background-color:#F5F5F5;
 }
@@ -166,7 +164,6 @@
 
 .my-comment-body{
   position:relative;
-  left:10px;
   width:350px;
   background-color:rgba(51,204,153,0.2);
 }
@@ -183,13 +180,12 @@
 }
 .my-seller-comment-body{
   position:relative;
-  right:30px;
   width:350px;
-  background-color:#FAEBD7;
+  background-color:rgba(51,204,153,0.2);
 }
 .my-seller-comment-body:after  {
   border:10px solid transparent;
-  border-bottom-color:#FAEBD7;
+  border-bottom-color:rgba(51,204,153,0.2);
   border-top-width:0;
   top:-10px;
   content:"";
