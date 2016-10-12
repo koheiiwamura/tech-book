@@ -13,7 +13,7 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name),html: {id: "login-form"} ) do |f| %>
           <div class="modal-body pb-5">
             <h4 class="text-center heading mt-10 mb-20">ログイン</h4>
-            <button class="btn btn-facebook btn-block">Facebookでログイン</button>
+            <%= link_to "Facebookでログイン",  user_facebook_omniauth_authorize_path, class:"btn btn-facebook btn-block"  %>
             <div class="modal-seperator">
               <span>or</span>
             </div>
@@ -83,7 +83,8 @@
           <%= devise_error_messages! %>
           <div class="modal-body pb-5">
             <h3 class="text-center heading mt-10 mb-20">新規登録</h3>
-            <button class="btn btn-facebook btn-block">Facebookで登録</button>
+            <%= link_to "Facebookで登録",  user_facebook_omniauth_authorize_path, class:"btn btn-facebook btn-block"  %>
+            <!-- <button class="btn btn-facebook btn-block">Facebookで登録</button> -->
             <div class="modal-seperator">
               <span>or</span>
             </div>
@@ -131,8 +132,7 @@
       <div class="navbar-top">
         <% if notice %>
           <p class="alert alert-notice"><%= notice %></p>
-        <% end %>
-        <% if alert %>
+        <% elsif alert %>
          <p class="alert alert-error"><%= alert %></p>
         <% end %>
         <div class="container">
