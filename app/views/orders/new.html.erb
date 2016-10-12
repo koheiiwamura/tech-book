@@ -4,6 +4,11 @@
 <div class="main-wrapper">
   <div class="breadcrumb-wrapper bg-light-2">
     <div class="container">
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% elsif alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
       <ol class="breadcrumb-list booking-step">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "詳細ページ", book_path(@book) %></li>
