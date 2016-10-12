@@ -53,3 +53,6 @@ gem "bootstrap"
 gem 'kaminari'
 gem 'carrierwave'
 gem 'webpay'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
+

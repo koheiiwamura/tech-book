@@ -14,8 +14,12 @@ class OrdersController < ApplicationController
     @order_detail.save
     @book = Book.find(params[:book_id])
     @order = Order.new(buyer_id: current_user.id, book_id: params[:book_id], order_detail_id: @order_detail.id,seller_id: @book.user_id, payment_method: params[:order][:payment_method])
-    @order.save
-    redirect_to controller: :orders, action: :show, id: @order.id, book_id: @book.id
+    if @order.save
+      redirect_to controller: :orders, action: :show, id: @order.id, book_id: @book.id
+    else
+      flash[:alert] = "購入することができませんでした"
+      render :new
+    end
   end
 
   def show

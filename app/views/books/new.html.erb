@@ -20,6 +20,11 @@
     <!-- end Page title -->
     <div class="breadcrumb-wrapper bg-light-2">
       <div class="container">
+        <% if notice %>
+          <p class="alert alert-notice"><%= notice %></p>
+        <% elsif alert %>
+          <p class="alert alert-error"><%= alert %></p>
+        <% end %>
         <ol class="breadcrumb-list">
           <li><%= link_to "Home", root_path %></li>
           <li><span>本を売る</span></li>

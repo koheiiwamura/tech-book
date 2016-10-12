@@ -20,3 +20,6 @@
 
 # Ignore webpay.
 /config/initializers/
+
+# Ignore env.
+/.env
