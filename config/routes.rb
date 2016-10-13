@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :selled, only:[:index]
   end
   resources :users, only: [:show, :edit, :update]
+  resources :password_resets
   resources :addresses, only: :update
   resources :banks, only: [:create, :update]
   root 'books#index'

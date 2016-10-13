@@ -55,11 +55,11 @@
         <% end %>
         <!-- End # Login Form -->
         <!-- Begin | Lost Password Form -->
-        <form id="lost-form" style="display:none;">
+        <%= form_tag password_resets_path, :method => :post, id:"lost-form", style:"display:none" do %>
           <div class="modal-body pb-5">
             <h3 class="text-center heading mt-10 mb-20">パスワードの再設定</h3>
             <div class="form-group mb-10">
-              <input id="lost_email" class="form-control" type="text" placeholder="登録したアドレスを入力">
+              <%= text_field_tag :email, params[:email], id:"lost_email", class:"form-control", placeholder:"登録したアドレスを入力" %>
             </div>
             <div class="text-center">
               <button id="lost_login_btn" type="button" class="btn btn-link">ログイン</button> /
@@ -76,7 +76,7 @@
               </div>
             </div>
           </div>
-        </form>
+        <% end %>
         <!-- End | Lost Password Form -->
         <!-- Begin | Register Form -->
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'register-form', style:"display:none"} ) do |f| %>
