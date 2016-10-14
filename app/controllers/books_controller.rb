@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_action :check_orderd, only: [:edit, :update]
 
   def index
-    @books = Book.all.includes(:user).page(params[:page]).per(8).order("id DESC")
+    @books = Book.all.includes(:order).page(params[:page]).per(8).order("id DESC")
     if current_user
       @like = Like.find_by(user_id: current_user.id, book_id: params[:id])
     end
@@ -29,7 +29,7 @@ class BooksController < ApplicationController
     if current_user
       @like = Like.find_by(user_id: current_user.id, book_id: params[:id])
     end
-    @related_books = Book.where(category: @book.category).where.not(id: @book.id).order("RAND()").limit(3)
+    @related_books = Book.where(category: @book.category).where.not(id: @book.id).includes(:order).order("RAND()").limit(3)
     @comment = Comment.new
     @comments = @book.comments.includes(:user).page(params[:page]).per(8).order("id DESC")
   end
