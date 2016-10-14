@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   #usernameを必須とする
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, length: {minimum:8}
+  validates :password, presence: true, length: {minimum:8}, on: :create
+  validates :password, length: {minimum:8}, on: :update, allow_blank: true
+  validates :password_confirmation, length: {minimum:8}, on: :update, allow_blank: true
   has_many :books
   has_many :likes
   has_many :comments
@@ -22,15 +24,15 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, ImageUploader
   devise :omniauthable, omniauth_providers: [:facebook]
 
-def self.new_with_session(params, session)
-  super.tap do |user|
-    if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+          user.email = data["email"] if user.email.blank?
+      end
     end
   end
-end
 
- def self.find_for_oauth(auth)
+  def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
     unless user
@@ -56,6 +58,18 @@ end
     self.password_reset_sent_at = Time.zone.now
     self.save(validate: false)
     UserMailer.password_reset(self).deliver_now
+  end
+
+
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 
 end

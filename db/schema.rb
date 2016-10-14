@@ -39,14 +39,14 @@ ActiveRecord::Schema.define(version: 20161013101857) do
     t.string   "title",       limit: 255
     t.text     "content",     limit: 65535
     t.string   "state",       limit: 255
-    t.integer  "price",       limit: 4,     default: 0, null: false
-    t.integer  "postage",     limit: 4,     default: 0, null: false
+    t.integer  "price",       limit: 4
+    t.integer  "postage",     limit: 4
     t.integer  "likes_count", limit: 4,     default: 0
     t.integer  "user_id",     limit: 4
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.string   "category",    limit: 255
     t.string   "image",       limit: 255
+    t.string   "category",    limit: 255
   end
 
   create_table "comments", force: :cascade do |t|
