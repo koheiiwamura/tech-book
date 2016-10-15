@@ -53,6 +53,7 @@ gem 'pry-rails'
 gem "bootstrap"
 gem 'kaminari'
 gem 'carrierwave'
+gem 'fog'
 gem 'webpay'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
