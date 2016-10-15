@@ -1,5 +1,5 @@
 class AddImageUrlToBooks < ActiveRecord::Migration
   def change
-    # add_column :books, :image, :string
+    add_column :books, :image, :string
   end
 end
