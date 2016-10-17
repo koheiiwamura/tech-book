@@ -6,7 +6,7 @@
         <%= image_tag book.image, alt:"Tour Package" %>
         <div class="absolute-in-image">
           <% if book.order.present? %>
-            <%= image_tag "/assets/sold.png", class:"soldout" %>
+            <%= image_tag asset_path('sold.png'), class:"soldout" %>
           <% end %>
           <div class="duration"><span><%= book.category %></span></div>
         </div>
