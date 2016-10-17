@@ -101,7 +101,7 @@
                       </div>
                     </div>
                     <div class="center hide">
-                      <script src="https://checkout.webpay.jp/v1/" data-submit-text="カード決済で確定する" class="webpay-button" data-key="<%= WEBPAY_PUBLIC_KEY %>" data-partial="true"></script>
+                      <script src="https://checkout.webpay.jp/v1/" data-submit-text="カード決済で確定する" class="webpay-button" data-key=ENV['ACCESS_KEY_ID'] data-partial="true"></script>
                     </div>
                   </div>
                 </div>

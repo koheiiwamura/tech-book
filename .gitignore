@@ -15,11 +15,6 @@
 # Ignore image.
 /public/uploads/
 
-# Ignore image.
-/app/assets/images/
-
-# Ignore webpay.
-/config/initializers/
 
 # Ignore env.
 /.env

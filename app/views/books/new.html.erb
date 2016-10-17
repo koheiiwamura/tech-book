@@ -2,7 +2,7 @@
   <!-- start Main Wrapper -->
   <div class="main-wrapper scrollspy-container">
     <!-- start end Page title -->
-    <div class="page-title detail-page-title" style="background-image:url('/assets/books_on_desk2.jpg');">
+    <div class="page-title detail-page-title" style="background-image:url(<%= asset_path('books_on_desk2.jpg')%>);">
       <div class="container">
         <div class="flex-row">
           <div class="flex-column flex-md-8 flex-sm-12">
@@ -38,7 +38,7 @@
             <div class="col-sm-3 col-xs-12   mb-50-xs">
               <div class="scrollspy-sidebar sidebar-detail js-imgInput" role="complementary">
                 <%= f.file_field :image, required: true, type:"file"%>
-                <img src="/assets/no_image.jpg" alt="" class="js-imgView">
+                <img src=<%=asset_path('no_image.jpg')%> alt="" class="js-imgView">
               </div>
             </div>
             <div class="col-md-9 mt-30-xs" role="main">
