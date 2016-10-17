@@ -273,7 +273,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   if Rails.env.production?
-    config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], callback_url: "#"
+    config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], callback_url: "http://52.196.91.14/users/auth/facebook/callback"
   else
     config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], callback_url: "http://localhost:3000/users/auth/facebook/callback"
   end
