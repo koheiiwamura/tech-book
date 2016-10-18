@@ -13,7 +13,7 @@
 /tmp
 
 # Ignore image.
-/public/uploads/
+/public/uploads
 
 
 # Ignore env.
