@@ -447,4 +447,4 @@ jQuery(function($) {
       }
     })
 
-})(jQuery);
+});
