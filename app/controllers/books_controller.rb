@@ -12,7 +12,6 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-    # @book.images.build
   end
 
   def create

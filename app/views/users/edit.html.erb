@@ -14,7 +14,6 @@
         <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
           <h2 class="text-white"><%= @user.username %></h2>
           <div class="user-thumbnail mb-10" style="background-image:url('#{@user.avatar}');">
-          <!-- <img src="images/books/book9.jpg" alt="" class="user-thumbnail"> -->
           </div>
         </div>
       </div>
@@ -45,7 +44,6 @@
                     <div class="form-group gap-20">
                       <label class="col-sm-4 col-md-4 control-label">姓:</label>
                       <div class="col-sm-8 col-md-6">
-                        <!-- <input type="text" class="form-control" value="#{@user.last_name}"> -->
                         <%= f.text_field :last_name, class:"form-control", required: true %>
                       </div>
                     </div>
@@ -54,7 +52,6 @@
                     <div class="form-group gap-20">
                       <label class="col-sm-4 col-md-4 control-label">名:</label>
                       <div class="col-sm-8 col-md-6">
-                        <!-- <input type="text" class="form-control" value="じょうじ"> -->
                         <%= f.text_field :first_name, class:"form-control", required: true %>
                       </div>
                     </div>
@@ -63,7 +60,6 @@
                     <div class="form-group gap-20">
                       <label class="col-sm-4 col-md-4 control-label">郵便番号:</label>
                       <div class="col-sm-8 col-md-6">
-                        <!-- <input type="text" class="form-control" value="150-0042"> -->
                         <%= f.text_field :postal_code, class:"form-control", required: true %>
                       </div>
                     </div>
@@ -73,7 +69,6 @@
                       <label class="col-sm-4 col-md-4 control-label">住所:</label>
                       <div class="col-sm-8 col-md-6">
                         <%= f.text_field :street_address, class:"form-control", required: true %>
-                        <!-- <input type="text" class="form-control" value="東京都渋谷区道玄坂2丁目"> -->
                       </div>
                     </div>
                   </div>
@@ -82,14 +77,12 @@
                       <label class="col-sm-4 col-md-4 control-label">電話番号:</label>
                       <div class="col-sm-8 col-md-6">
                         <%= f.text_field :phone_number, class:"form-control", required: true %>
-                        <!-- <input type="text" class="form-control" value="東京都渋谷区道玄坂2丁目"> -->
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="text-center">
                   <%= f.submit "購入者情報を更新", class:"btn btn-primary btn-sm btn-inverse" %>
-                  <!-- <button class="btn btn-primary btn-sm btn-inverse">購入者情報の編集</button> -->
                 </div>
               </div>
             </div>
@@ -105,7 +98,6 @@
                     <div class="form-group gap-20">
                       <label class="col-sm-4 col-md-4 control-label">銀行名:</label>
                       <div class="col-sm-8 col-md-6">
-                        <!-- <input type="text" class="form-control" value="#{@user.last_name}"> -->
                         <%= f.text_field :bank_name, class:"form-control", placeholder:"テック銀行", required: true %>
                       </div>
                     </div>
@@ -114,7 +106,6 @@
                     <div class="form-group gap-20">
                       <label class="col-sm-4 col-md-4 control-label">支店名:</label>
                       <div class="col-sm-8 col-md-6">
-                        <!-- <input type="text" class="form-control" value="じょうじ"> -->
                         <%= f.text_field :branch_name, class:"form-control", placeholder:"テック支店", required: true %>
                       </div>
                     </div>
@@ -123,7 +114,6 @@
                     <div class="form-group gap-20">
                       <label class="col-sm-4 col-md-4 control-label">口座種別:</label>
                       <div class="col-sm-8 col-md-6">
-                        <!-- <input type="text" class="form-control" value="150-0042"> -->
                         <%= f.select :account_type, options_for_select(["普通", "当座", "貯蓄"]), class:"select select2-multi form-control" %>
                       </div>
                     </div>
@@ -133,7 +123,6 @@
                       <label class="col-sm-4 col-md-4 control-label">口座番号:</label>
                       <div class="col-sm-8 col-md-6">
                         <%= f.text_field :number, class:"form-control", placeholder:"0123456", required: true, pattern:"[0-9]{7}", title:"半角数字7文字" %>
-                        <!-- <input type="text" class="form-control" value="東京都渋谷区道玄坂2丁目"> -->
                       </div>
                     </div>
                   </div>
@@ -142,14 +131,12 @@
                       <label class="col-sm-4 col-md-4 control-label">口座名義(カナ(半角スペース)カナ):</label>
                       <div class="col-sm-8 col-md-6">
                         <%= f.text_field :holder_name, class:"form-control", placeholder:"テック(半角スペース)タロウ", required: true, pattern:"^[ァ-ン| | ]+$", title:"全角カタカナ" %>
-                        <!-- <input type="text" class="form-control" value="東京都渋谷区道玄坂2丁目"> -->
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="text-center">
                   <%= f.submit "受け取り口座情報を更新", class:"btn btn-primary btn-sm btn-inverse" %>
-                  <!-- <button class="btn btn-primary btn-sm btn-inverse">購入者情報の編集</button> -->
                 </div>
               </div>
             </div>
@@ -222,7 +209,6 @@
                         <a href="blog-single.html">
                           <div class="image">
                             <%= link_to image_tag("#{book.image}", alt:'Popular Post'), book_path(book) %>
-                            <!-- <img src="images/books/book1.png" alt="Popular Post" /> -->
                           </div>
                           <div class="content">
                             <h6><%= book.title %></h6>
