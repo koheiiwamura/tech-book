@@ -36,7 +36,6 @@
                       <h4>本の名前</h4>
                     </div>
                       <%= f.text_field :title, placeholder: "本のタイトル", required: true %>
-                      <!-- <h5 class="heading">ランディングページ・デザインメソッド</h5> -->
                   </div>
                   <div id="section-2" class="detail-content">
                     <div class="section-title text-left">
@@ -55,19 +54,13 @@
                           </ul>
                         </div>
                         <div class="col-sm-8 col-md-9">
-<!--                           <div class="itinerary-wrapper">
-                            <div class="itinerary-item"> -->
-                              <h5 class="mb-20">この本の内容を記入してください</h5>
-                              <div class="intro-item-body">
-                                <%= f.text_area :content, cols: "80", rows: "4", placeholder: "本の内容", required: true %>
-<!--                                 <p>ランディングページのデザインのための、マーケティングやコンバージョンなどに関する幅広い知識を身につけることができます。<br>2016年の秋に購入し、角にやや傷がありますが、中身はまだまだ綺麗なので問題なう読んでいただけるかと思います。</p> -->
-                              </div>
-                           <!--  </div>
-                          </div> -->
+                          <h5 class="mb-20">この本の内容を記入してください</h5>
+                          <div class="intro-item-body">
+                            <%= f.text_area :content, cols: "80", rows: "4", placeholder: "本の内容", required: true %>
+                          </div>
                         </div>
                       </div>
                       <div class="text-center pt-10">
-                        <!-- <a href="#" class="btn btn-primary btn-full-width">出品する</a> -->
                         <%= f.submit "更新する", class:"btn btn-primary btn-full-width" %>
                       </div>
                     </div>

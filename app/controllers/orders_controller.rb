@@ -32,8 +32,6 @@ class OrdersController < ApplicationController
   def detail_params
     params.require(:order_detail).permit(:last_name, :first_name, :email, :phone_number, :postal_code, :street_address, :payment_method)
   end
-  def create_params
-  end
 
   def check_logined
     if !(user_signed_in?)

@@ -8,7 +8,6 @@ $(function(){
     orgPass = prevElm.attr('src');
 
     selfInput.change(function(){
-        console.log('aaa')
         var file = $(this).prop('files')[0],
         fileRdr = new FileReader();
 
