@@ -15,10 +15,14 @@
       <div class="content clearfix">
         <h5><%= book.title %></h5>
         <div class="absolute-in-content">
-          <% if book.likes_count != 0 %>
-            <span class="btn likes_count"><i class="fa fa-heart-o" style="color: red"></i>
-              <%= book.likes_count %>
-            </span>
+          <% if !(book.order.present?) %>
+            <% if book.likes_count != 0 %>
+              <span class="btn likes_count"><i class="fa fa-heart-o" style="color: red"></i>
+                <%= book.likes_count %>
+              </span>
+            <% else %>
+              <span class="btn likes_count"><i class="fa fa-heart-o" style="color: white"></i></span>
+            <% end %>
           <% else %>
             <span class="btn likes_count"><i class="fa fa-heart-o" style="color: white"></i></span>
           <% end %>

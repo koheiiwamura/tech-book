@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :check_logined
-  before_action :check_orderd, only: [:new]
+  before_action :check_orderd, only: [:new, :create]
   before_action :check_user, only: [:show]
   def new
     @book = Book.find(params[:book_id])
@@ -47,7 +47,10 @@ class OrdersController < ApplicationController
 
   def check_orderd
     if Book.find(params[:book_id]).order.present?
-      redirect_to root_path, alert: "この本は売り切れです"
+      redirect_to book_path(id: params[:book_id]), alert: "この本は売り切れです"
+    end
+    if Book.find(params[:book_id]).user == current_user
+      redirect_to root_path, alert: "自分の本を買うことはできません"
     end
   end
 end
