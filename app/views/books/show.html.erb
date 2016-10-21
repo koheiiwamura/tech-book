@@ -39,9 +39,11 @@
                     <h4>概要</h4>
                   </div>
                     <h5 class="heading"><%= @book.title %>
+                    <% if !(@book.order.present?) %>
                       <span id="like_buttons">
                         <%= render partial:"likes/like", locals:{book: @book, like: @like}%>
                       </span>
+                    <% end %>
                     </h5>
                     <h5 class="price mt-0">合計金額: <span><%= @book.total_price(@book) %>円</span></h5>
                 </div>
@@ -86,7 +88,9 @@
                         <% end %>
                       <% else %>
                         <div class="text-center pt-10">
-                          <%= link_to "編集する", edit_book_path(@book), class:"btn btn-primary btn-full-width" %>
+                          <% if !(@book.order.present?) %>
+                            <%= link_to "編集する", edit_book_path(@book), class:"btn btn-primary btn-full-width" %>
+                          <% end %>
                           <%= link_to "削除する", book_path(@book), method: :delete, class:"destroy-button-custom btn  btn-full-width" %>
                         </div>
                       <% end %>

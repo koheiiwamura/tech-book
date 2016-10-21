@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :check_logined, only:[:show, :edit, :update]
   before_action :check_user, only: [:edit, :update]
   def show
-    @favorite_books = @user.like_books.page(params[:page]).per(8).order("id DESC")
-    @selled_books = @user.books.page(params[:page]).per(8).order("id DESC")
-    @bought_books = @user.books_of_buyer.page(params[:page]).per(8).order("id DESC")
+    @favorite_books = @user.like_books.includes(:order).page(params[:page]).per(8).order("id DESC")
+    @selled_books = @user.books.includes(:order).page(params[:page]).per(8).order("id DESC")
+    @bought_books = @user.books_of_buyer.includes(:order).page(params[:page]).per(8).order("id DESC")
   end
   def edit
     @address = Address.where(user_id: @user.id).first_or_create
