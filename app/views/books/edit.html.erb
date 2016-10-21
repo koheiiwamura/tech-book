@@ -35,7 +35,7 @@
                     <div class="section-title text-left">
                       <h4>本の名前</h4>
                     </div>
-                      <%= f.text_field :title, placeholder: "本のタイトル", required: true, class:"form-control" %>
+                      <%= f.text_field :title, placeholder: "本のタイトル", required: true, class:"form-control", maxlength: 50 %>
                   </div>
                   <div id="section-2" class="detail-content">
                     <div class="section-title text-left">
@@ -45,8 +45,8 @@
                       <div class="row">
                         <div class="col-sm-4 col-sm-3">
                           <ul class="list-info no-icon bb-dotted">
-                            <li><span class="font600">本体価格(円)</span><%= f.text_field :price, placeholder: "本体価格", required: true, type:"number", min:"100", class:"form-control sell-form" %></li>
-                            <li><span class="font600">送料(円)</span><%= f.text_field :postage, placeholder: "送料",required: true, type:"number", min:"0", class:"form-control sell-form" %></li>
+                            <li><span class="font600">本体価格(円)</span><%= f.text_field :price, placeholder: "本体価格", required: true, type:"number", min:"1", max:"100000", class:"form-control sell-form" %></li>
+                            <li><span class="font600">送料(円)</span><%= f.text_field :postage, placeholder: "送料",required: true, type:"number", min:"0", max:"10000", class:"form-control sell-form" %></li>
                             <li><span class="font600">カテゴリ</span>
                               <%= f.select :category, options_for_select(["HTML CSS", "Ruby", "JavaScript", "Ruby on Rails", "PHP", "Java", "Python", "C", "Swift", "その他"],:selected => f.object.category), {},{ class: "form-control sell-form " }  %>
                             </li>
@@ -56,7 +56,7 @@
                         <div class="col-sm-8 col-md-9">
                           <h5 class="mb-20">この本の内容を記入してください</h5>
                           <div class="intro-item-body">
-                            <%= f.text_area :content, cols: "80", rows: "4", placeholder: "本の内容", required: true,  class:"form-control" %>
+                            <%= f.text_area :content, cols: "80", rows: "5", placeholder: "本の内容", required: true,  class:"form-control", maxlength: 400 %>
                           </div>
                         </div>
                       </div>
