@@ -7,11 +7,11 @@ class Book < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   mount_uploader :image, ImageUploader
 
-  validates :title, presence: true
-  validates :content, presence: true
+  validates :title, presence: true, length: { maximum: 50 }
+  validates :content, presence: true, length: { maximum: 400 }
   validates :state, presence: true
-  validates :price, presence: true
-  validates :postage, presence: true
+  validates :price, presence: true, numericality: {greater_than_or_equal_to: 1, less_than_or_equal_to: 100000 }
+  validates :postage, presence: true, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 10000 }
 
   def total_price(book)
     if book.price && book.postage
