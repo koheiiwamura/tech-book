@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :update]
   resources :password_resets
-  resources :addresses, only: :update
+  # post 'addresses/:id' => 'addresses#update', as: "address"
+  resources :addresses, only: [:create, :update]
   resources :banks, only: [:create, :update]
   root 'books#index'
   get 'books/search' => 'books/search#index'

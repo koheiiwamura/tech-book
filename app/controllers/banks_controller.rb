@@ -14,7 +14,7 @@ class BanksController < ApplicationController
   def update
     @bank = Bank.find(params[:id])
     if @bank.update(bank_params)
-      redirect_to :controller => 'users', :action => 'show', notice:"銀行口座を更新しました"
+      redirect_to user_path(id: @bank.user.id), notice:"銀行口座を更新しました"
     else
       flash[:alert] = "銀行口座を更新できませんでした"
       render "user/edit"
