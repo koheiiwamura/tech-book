@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
 
   private
   def detail_params
-    params.require(:order_detail).permit(:last_name, :first_name, :email, :phone_number, :postal_code, :street_address, :payment_method)
+    params.require(:order_detail).permit(:last_name, :first_name, :email, :phone_number, :postal_code, :street_address, :payment_method, :accept_booking)
   end
 
   def check_logined

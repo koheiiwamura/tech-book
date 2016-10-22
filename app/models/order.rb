@@ -5,4 +5,5 @@ class Order < ActiveRecord::Base
   belongs_to :order_detail
 
   validates :book_id, uniqueness: true, uniqueness: { scope: :buyer_id }
+  validates :accept_booking, acceptance: true
 end
