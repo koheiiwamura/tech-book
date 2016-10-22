@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
 
   def update
+    binding.pry
     @address = Address.find(params[:id])
     if @address.update(update_params)
       redirect_to ({:controller => 'users', :action => 'show', id: @address.user}), notice:"更新しました"
