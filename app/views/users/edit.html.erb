@@ -60,7 +60,7 @@
                     <div class="form-group gap-20">
                       <label class="col-sm-4 col-md-4 control-label">郵便番号:</label>
                       <div class="col-sm-8 col-md-6">
-                        <%= f.text_field :postal_code, class:"form-control", required: true %>
+                        <%= f.text_field :postal_code, class:"form-control", required: true, name:"zip", onKeyUp: "AjaxZip3.zip2addr(this,'','address','address');" %>
                       </div>
                     </div>
                   </div>
@@ -68,7 +68,7 @@
                     <div class="form-group gap-20">
                       <label class="col-sm-4 col-md-4 control-label">住所:</label>
                       <div class="col-sm-8 col-md-6">
-                        <%= f.text_field :street_address, class:"form-control", required: true %>
+                        <%= f.text_field :street_address, class:"form-control", required: true, name:"address" %>
                       </div>
                     </div>
                   </div>
