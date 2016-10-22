@@ -73,7 +73,7 @@
                       <div class="form-group gap-20">
                         <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>郵便番号:</label>
                         <div class="col-sm-6 col-md-6">
-                          <%= text_field_tag "order_detail[postal_code]", "#{@address.postal_code}", class:"form-control", required: true, name:"zip", onKeyUp: "AjaxZip3.zip2addr(this,'','address','address');" %>
+                          <%= text_field_tag "order_detail[postal_code]", "#{@address.postal_code}", class:"form-control", required: true, name:"order_detail[postal_code]", onKeyUp: "AjaxZip3.zip2addr(this,'','order_detail[street_address]','order_detail[street_address]');" %>
                         </div>
                       </div>
                     </div>
@@ -81,7 +81,7 @@
                       <div class="form-group gap-20">
                         <label class="col-sm-4 col-md-4 control-label"><spna class="necessary-info">*</spna>住所:</label>
                         <div class="col-sm-6 col-md-6">
-                          <%= text_field_tag "order_detail[street_address]", "#{@address.street_address}", class:"form-control", required: true, name:"address"  %>
+                          <%= text_field_tag "order_detail[street_address]", "#{@address.street_address}", class:"form-control", required: true, name:"order_detail[street_address]"  %>
                         </div>
                       </div>
                     </div>

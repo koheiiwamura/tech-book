@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     @book = Book.find(params[:book_id])
     @address = Address.where(user_id: current_user.id).first_or_create
     @order = Order.new
-    @order_detail = OrderDetail.new
+    # @order_detail = OrderDetail.new
   end
 
   def create
