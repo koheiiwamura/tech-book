@@ -33,4 +33,5 @@
 //= require js/jquery.raty.js
 //= require js/customs.js
 //= require js/preview.js
+//= require js/button.js
 
