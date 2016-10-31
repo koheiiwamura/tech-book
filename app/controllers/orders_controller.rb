@@ -7,14 +7,10 @@ class OrdersController < ApplicationController
     @book = Book.find(params[:book_id])
     @address = Address.where(user_id: current_user.id).first_or_create
     @order = Order.new
-    # @order_detail = OrderDetail.new
+    session[:return_to] = request.url
   end
 
   def create
-    # binding.pry
-    # if params["webpay-token"] == ""
-    #   redirect_to root_path
-    # end
     @order_detail = OrderDetail.new(detail_params)
     @order_detail.save
     @book = Book.find(params[:book_id])
