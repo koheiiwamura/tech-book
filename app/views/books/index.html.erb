@@ -143,7 +143,6 @@
             <div class="flex-columns">
               <div class="pull-right">
                 <div class="navbar-mini">
-
                   <ul class="clearfix">
                     <% if user_signed_in? %>
                       <li class="dropdown bt-dropdown-click hidden-xs">
@@ -156,7 +155,7 @@
                           <li><%= link_to "本を売る",new_book_path %></li>
                           <li><%= link_to "出品した本",users_selled_index_path%></li>
                           <li><%= link_to "購入した本",user_orders_path(current_user)%></li>
-                          <li><%= link_to "ログアウト",destroy_user_session_path %></li>
+                          <li><%= link_to "ログアウト",destroy_user_session_path, method: :delete %></li>
                         </ul>
                       </li>
                     <% else %>
