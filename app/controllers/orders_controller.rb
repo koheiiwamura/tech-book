@@ -2,11 +2,12 @@ class OrdersController < ApplicationController
   before_action :check_logined
   before_action :check_orderd, only: [:new, :create]
   before_action :check_user, only: [:show]
+  before_action :check_card, only: [:create]
   def new
     @book = Book.find(params[:book_id])
     @address = Address.where(user_id: current_user.id).first_or_create
     @order = Order.new
-    # @order_detail = OrderDetail.new
+    session[:return_to] = request.url
   end
 
   def create
@@ -31,6 +32,13 @@ class OrdersController < ApplicationController
   private
   def detail_params
     params.require(:order_detail).permit(:last_name, :first_name, :email, :phone_number, :postal_code, :street_address, :payment_method, :accept_booking)
+  end
+
+  def check_card
+    if params[:order][:payment_method] == "クレジットカード" && params["webpay-token"] == ""
+      flash[:alert] = "カード情報を入力してください"
+      redirect_to :back
+    end
   end
 
   def check_logined
