@@ -20,8 +20,14 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-9" role="main">
-          <div class="section-title text-left">
-            <h3><%= @book.title %><small>を購入します。</small></h3>
+          <div class="section-title text-left clearfix">
+            <div class="title-left">
+              <%= image_tag @book.image, class:"sell_book" %>
+            </div>
+            <div class="title-right">
+              <h3><%= @book.title %></h3>
+              <small>を購入します。</small>
+            </div>
           </div>
           <div class="payment-container">
             <div class="payment-box">
@@ -29,7 +35,9 @@
                 <div class="number">
                   !
                 </div>
-                <h5 class="heading mt-0">お届け先詳細</h5>
+                <h5 class="heading mt-1">お届け先詳細
+                  <%= link_to "住所の初期設定をする", edit_user_path(current_user), class:"btn-primary btn-sm btn-inverse btn-address" %>
+                </h5>
                 <p><spna class="necessary-info">*必須情報</spna></p>
               </div>
               <%= form_for(@order, url: book_orders_path(book_id: @book.id)) do |f| %>
