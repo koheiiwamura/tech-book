@@ -22,6 +22,10 @@ class OrdersController < ApplicationController
       render :new
     end
   end
+  def index
+    @user = User.find(params[:user_id])
+    @books = @user.books_of_buyer
+  end
 
   def show
     @order = Order.find(params[:id])
