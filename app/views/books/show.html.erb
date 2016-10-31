@@ -31,21 +31,37 @@
             <div class="scrollspy-sidebar sidebar-detail" role="complementary">
               <%= image_tag("#{@book.image}", alt: "Logo") %>
             </div>
+            <% if current_user == @book.user && @order.present? %>
+              <div class="detail-content-wrapper shipping-address">
+                <div class="confirmation-content ">
+                  <div class="section-title text-left">
+                    <h4 class="shipping-address-color">お届け先詳細</h4>
+                  </div>
+                  <ul class="book-sum-list">
+                    <li><span class="font600">宛名: </span> <%= @order_detail.last_name %> <%= @order_detail.first_name %> 様</li>
+                    <li><span class="font600">書籍名: </span> <%= @book.title %></li>
+                    <li><span class="font600">お届け先郵便番号: </span> <%= @order_detail.postal_code %></li>
+                    <li><span class="font600">お届け先住所: </span><%= @order_detail.street_address %></li>
+                    <li><span class="font600">お支払金額合計: </span><%= @book.all_total_price(@book) %>円</li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
           </div>
           <div class="col-md-9 mt-30-xs" role="main">
-            <div class="detail-content-wrapper">
-                <div id="section-0" class="detail-content">
-                  <div class="section-title text-left">
-                    <h4>概要</h4>
-                  </div>
-                    <h5 class="heading"><%= @book.title %>
-                    <% if !(@book.order.present?) %>
-                      <span id="like_buttons">
-                        <%= render partial:"likes/like", locals:{book: @book, like: @like}%>
-                      </span>
-                    <% end %>
-                    </h5>
-                    <h5 class="price mt-0">合計金額: <span><%= @book.total_price(@book) %>円</span></h5>
+            <div>
+              <div id="section-0" class="detail-content">
+                <div class="section-title text-left">
+                  <h4>概要</h4>
+                </div>
+                  <h5 class="heading"><%= @book.title %>
+                  <% if !(@book.order.present?) %>
+                    <span id="like_buttons">
+                      <%= render partial:"likes/like", locals:{book: @book, like: @like}%>
+                    </span>
+                  <% end %>
+                  </h5>
+                  <h5 class="price mt-0">合計金額: <span><%= @book.total_price(@book) %>円</span></h5>
                 </div>
                 <div id="section-2" class="detail-content">
                   <div class="section-title text-left">
