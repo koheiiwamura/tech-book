@@ -154,8 +154,9 @@
                         <ul class="dropdown-menu" aria-labelledby="language-dropdown">
                           <li><%= link_to "マイページ",user_path(current_user) %></li>
                           <li><%= link_to "本を売る",new_book_path %></li>
-                          <li><%= link_to "出品中の本",users_selled_index_path, method: :get %></li>
-                          <li><%= link_to "ログアウト",destroy_user_session_path,method: :delete %></li>
+                          <li><%= link_to "出品した本",users_selled_index_path%></li>
+                          <li><%= link_to "購入した本",user_orders_path(current_user)%></li>
+                          <li><%= link_to "ログアウト",destroy_user_session_path %></li>
                         </ul>
                       </li>
                     <% else %>
