@@ -128,11 +128,7 @@
 
     <nav class="navbar navbar-primary navbar-fixed-top navbar-sticky-function">
       <div class="navbar-top">
-        <% if notice %>
-          <p class="alert alert-notice"><%= notice %></p>
-        <% elsif alert %>
-         <p class="alert alert-error"><%= alert %></p>
-        <% end %>
+        <%= render partial:"layouts/flash" %>
         <div class="container">
           <div class="flex-row flex-align-middle">
             <div class="flex-shrink flex-columns">

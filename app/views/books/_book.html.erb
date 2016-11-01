@@ -4,7 +4,7 @@
       <div class="image">
         <%= link_to image_tag("#{book.image}"), book_path(book.id) %>
         <div class="absolute-in-image">
-          <% if book.order.present? %>
+          <% if book.order %>
             <%= image_tag '/images/sold.png', class:"soldout" %>
           <% end %>
           <div class="duration">
@@ -13,10 +13,9 @@
         </div>
       </div>
       <div class="content clearfix">
-        <!-- <h5><%= book.title %></h5> -->
         <h5><%= truncate(book.title, :length => 25, :omssion => "...") %></h5>
         <div class="absolute-in-content">
-          <% if !(book.order.present?) %>
+          <% if !(book.order) %>
             <% if book.likes_count != 0 %>
               <span class="btn likes_count"><i class="fa fa-heart-o" style="color: red"></i>
                 <%= book.likes_count %>

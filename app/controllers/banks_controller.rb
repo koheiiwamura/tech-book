@@ -22,7 +22,11 @@ class BanksController < ApplicationController
   end
 
   private
+
   def bank_params
-    params.require(:bank).permit(:bank_name, :branch_name, :account_type, :number, :holder_name).merge(user_id: current_user.id)
+    params.require(:bank).permit(
+      :bank_name, :branch_name, :account_type,
+      :number, :holder_name
+      ).merge(user_id: current_user.id)
   end
 end

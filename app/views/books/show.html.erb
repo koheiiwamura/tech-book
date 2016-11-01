@@ -2,11 +2,7 @@
   <div class="clear"></div>
   <!-- start Main Wrapper -->
   <div class="main-wrapper scrollspy-container">
-    <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-    <% elsif alert %>
-      <p class="alert alert-error"><%= alert %></p>
-    <% end %>
+    <%= render partial:"layouts/flash" %>
     <!-- start end Page title -->
     <div class="page-title detail-page-title" style="background-image:url('/images/books_on_desk2.jpg');">
       <div class="container">
@@ -31,7 +27,7 @@
             <div class="scrollspy-sidebar sidebar-detail" role="complementary">
               <%= image_tag("#{@book.image}", alt: "Logo") %>
             </div>
-            <% if current_user == @book.user && @order.present? %>
+            <% if current_user == @book.user && @order %>
               <div class="detail-content-wrapper shipping-address">
                 <div class="confirmation-content ">
                   <div class="section-title text-left">
@@ -55,7 +51,7 @@
                   <h4>概要</h4>
                 </div>
                   <h5 class="heading"><%= @book.title %>
-                  <% if !(@book.order.present?) %>
+                  <% if !(@book.order) %>
                     <span id="like_buttons">
                       <%= render partial:"likes/like", locals:{book: @book, like: @like}%>
                     </span>
@@ -93,7 +89,7 @@
                     </div>
                     <% if current_user %>
                       <% if current_user.id != @book.user_id %>
-                        <% if @book.order.present? %>
+                        <% if @book.order %>
                           <div class="text-center pt-10">
                             <div class="btn btn-primary btn-full-width">売り切れです</div>
                           </div>
@@ -104,7 +100,7 @@
                         <% end %>
                       <% else %>
                         <div class="text-center pt-10">
-                          <% if !(@book.order.present?) %>
+                          <% if !(@book.order) %>
                             <%= link_to "編集する", edit_book_path(@book), class:"btn btn-primary btn-full-width" %>
                           <% end %>
                           <%= link_to "削除する", book_path(@book), method: :delete, class:"destroy-button-custom btn  btn-full-width" %>

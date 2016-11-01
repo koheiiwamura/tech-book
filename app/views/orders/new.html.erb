@@ -2,11 +2,7 @@
 <div class="clear"></div>
 <!-- start Main Wrapper -->
 <div class="main-wrapper">
-      <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
-      <% elsif alert %>
-        <p class="alert alert-error"><%= alert %></p>
-      <% end %>
+  <%= render partial:"layouts/flash" %>
   <div class="breadcrumb-wrapper bg-light-2">
     <div class="container">
       <ol class="breadcrumb-list booking-step">

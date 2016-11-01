@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          :authentication_keys => [:username]
+  devise :omniauthable, omniauth_providers: [:facebook]
 
   #usernameを必須とする
   validates :username, presence: true, uniqueness: true
@@ -11,18 +12,17 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum:8}, on: :create
   validates :password, length: {minimum:8}, on: :update, allow_blank: true
   validates :password_confirmation, length: {minimum:8}, on: :update, allow_blank: true
+  has_one :bank
+  has_one :address
   has_many :books
   has_many :likes
   has_many :comments
-  has_one :address
-  has_one :bank
   has_many :orders_of_seller, :class_name => 'Order', :foreign_key => 'seller_id'
   has_many :orders_of_buyer, :class_name => 'Order', :foreign_key => 'buyer_id'
   has_many :books_of_seller, :through => :orders_of_seller, :source => 'book'
   has_many :books_of_buyer, :through => :orders_of_buyer, :source => 'book'
   has_many :like_books, through: :likes, source: :book
   mount_uploader :avatar, ImageUploader
-  devise :omniauthable, omniauth_providers: [:facebook]
 
   def self.new_with_session(params, session)
     super.tap do |user|

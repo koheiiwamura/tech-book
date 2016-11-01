@@ -5,9 +5,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.includes(:order).page(params[:page]).per(8).order("id DESC")
-    if current_user
-      @like = Like.find_by(user_id: current_user.id, book_id: params[:id])
-    end
+    @like = Like.find_by(user_id: current_user.id, book_id: params[:id]) if current_user
   end
 
   def new
@@ -15,7 +13,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(create_params)
+    @book = Book.new(book_params)
     if @book.save
       redirect_to root_path,notice:"投稿しました"
     else
@@ -25,9 +23,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    if current_user
-      @like = Like.find_by(user_id: current_user.id, book_id: params[:id])
-    end
+    @like = Like.find_by(user_id: current_user.id, book_id: params[:id]) if current_user
     if @book.order
       @order = @book.order
       @order_detail = @order.order_detail
@@ -41,13 +37,14 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update(update_params)
+    if @book.update(book_params)
       redirect_to root_path, notice:"更新しました"
     else
       flash[:alert] = "更新できませんでした"
       render :edit
     end
   end
+
   def destroy
     if current_user.id == @book.user_id
       @book.destroy
@@ -58,24 +55,22 @@ class BooksController < ApplicationController
   end
 
   private
-  def create_params
-    params.require(:book).permit(:image,:title,:content, :category, :state,:price,:postage).merge(user_id:current_user.id)
+
+  def book_params
+    params.require(:book).permit(
+      :image, :title, :content,
+      :category, :state,:price,:postage).merge(user_id:current_user.id)
   end
-  def update_params
-    params.require(:book).permit(:image,:title,:content, :category, :state,:price,:postage).merge(user_id:current_user.id)
-  end
+
   def set_book
     @book = Book.find(params[:id])
   end
+
   def check_user
-    if @book.user.id != current_user.id
-      redirect_to root_path, alert:"出品者以外編集できません"
-    end
-  end
-  def check_orderd
-    if @book.order.present?
-      redirect_to root_path, alert:"取引が終了のため、更新できません"
-    end
+    redirect_to root_path, alert:"出品者以外編集できません" if @book.user.id != current_user.id
   end
 
+  def check_orderd
+    redirect_to root_path, alert:"取引が終了のため、更新できません" if @book.order
+  end
 end

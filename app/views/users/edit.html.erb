@@ -2,11 +2,7 @@
 <div class="clear"></div>
 <!-- start Main Wrapper -->
 <div class="main-wrapper scrollspy-container">
-  <% if notice %>
-    <p class="alert alert-notice"><%= notice %></p>
-  <% elsif alert %>
-    <p class="alert alert-error"><%= alert %></p>
-  <% end %>
+  <%= render partial:"layouts/flash" %>
   <!-- start end Page title -->
   <div class="page-title" style="background-image:url('/images/my_room.jpeg');">
     <div class="container">
@@ -204,7 +200,7 @@
                 <h4 class="sidebar-title">購入履歴</h4>
                 <div class="sidebar-module-inner">
                   <ul class="sidebar-post">
-                    <% @books.each do |book|  %>
+                    <% @bought_books.each do |book|  %>
                       <li class="clearfix">
                         <a href="blog-single.html">
                           <div class="image">
@@ -222,7 +218,7 @@
                   </ul>
                 </div>
               </div>
-              <%= paginate @books %>
+              <%= paginate @bought_books %>
               <div class="clear"></div>
             </div>
           </aside>
