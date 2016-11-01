@@ -133,6 +133,7 @@
   position:relative;
   width:350px;
   background-color:#F5F5F5;
+  text-align:left;
 }
 .seller-comment-body:after  {
   border:10px solid transparent;
@@ -182,6 +183,7 @@
   position:relative;
   width:350px;
   background-color:rgba(51,204,153,0.2);
+  text-align:left;
 }
 .my-seller-comment-body:after  {
   border:10px solid transparent;
@@ -240,4 +242,14 @@
 }
 .shipping-address-color{
   color:white;
+}
+.trash{
+  float:right;
+  color:#666;
+  opacity:0.4;
+  transition:all 0.2s;
+}
+.trash:hover{
+  opacity:0.8;
+  cursor: pointer;
 }

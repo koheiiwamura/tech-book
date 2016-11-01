@@ -12,7 +12,14 @@
             </h6>
             <div class="comment my-seller-comment-body">
               <%= comment.text %>
-              <p><i class="fa fa-clock-o"></i><%= time_ago_in_words(comment.created_at) %></p>
+              <p>
+                <i class="fa fa-clock-o"></i><%= time_ago_in_words(comment.created_at) %>
+                <% if current_user == book.user %>
+                  <%= link_to book_comment_path(book, comment), :method => :delete, data: { confirm: "本当に削除してもよろしいですか" },  remote: true do %>
+                    <i class="fa fa-trash-o trash" type="button" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </p>
             </div>
           </div>
         </div>
@@ -27,7 +34,14 @@
             </h6>
             <div class="comment seller-comment-body">
               <%= comment.text %>
-              <p><i class="fa fa-clock-o"></i><%= time_ago_in_words(comment.created_at) %></p>
+              <p>
+                <i class="fa fa-clock-o"></i><%= time_ago_in_words(comment.created_at) %>
+                <% if current_user == book.user %>
+                  <%= link_to book_comment_path(book, comment), :method => :delete, data: { confirm: "本当に削除してもよろしいですか" },  remote: true do %>
+                    <i class="fa fa-trash-o trash" type="button" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </p>
             </div>
           </div>
         </div>
@@ -45,7 +59,14 @@
           </h6>
           <div class="comment my-comment-body">
             <%= comment.text %>
-            <p><i class="fa fa-clock-o"></i><%= time_ago_in_words(comment.created_at) %></p>
+            <p>
+            <i class="fa fa-clock-o"></i><%= time_ago_in_words(comment.created_at) %>
+            <% if current_user == book.user %>
+              <%= link_to book_comment_path(book, comment), :method => :delete, data: { confirm: "本当に削除してもよろしいですか" },  remote: true do %>
+                <i class="fa fa-trash-o trash" type="button" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+            </p>
           </div>
         </div>
       <% else %>
@@ -58,7 +79,13 @@
           </h6>
           <div class="comment other-comment-body">
             <%= comment.text %>
-            <p><i class="fa fa-clock-o"></i><%= time_ago_in_words(comment.created_at) %></p>
+            <p>
+              <% if current_user == book.user %>
+                <%= link_to book_comment_path(book, comment), :method => :delete, data: { confirm: "本当に削除してもよろしいですか" },  remote: true do %>
+                  <i class="fa fa-trash-o trash" type="button" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </p>
           </div>
         </div>
       <% end %>
