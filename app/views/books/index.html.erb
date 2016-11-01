@@ -219,7 +219,9 @@
           <div class="GridLex-grid-noGutter-equalHeight">
             <% if @books %>
               <% @books.each do |book| %>
-               <%= render partial:"book", locals:{book: book} %>
+                <div class="GridLex-col-3_sm-4_xs-12 mb-30">
+                 <%= render partial:"book", locals:{book: book} %>
+               </div>
               <% end %>
             <% end %>
           </div>

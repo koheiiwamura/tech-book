@@ -105,7 +105,9 @@
       <div class="GridLex-gap-30-wrappper package-grid-item-wrapper">
         <div class="GridLex-grid-noGutter-equalHeight">
           <% @favorite_books.each do |book| %>
-            <%= render partial:"books/book", locals:{book: book} %>
+            <div class="GridLex-col-3_sm-4_xs-12 mb-30">
+              <%= render partial:"books/book", locals:{book: book} %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -127,7 +129,9 @@
       <div class="GridLex-gap-30-wrappper package-grid-item-wrapper">
         <div class="GridLex-grid-noGutter-equalHeight">
           <% @bought_books.each do |book| %>
-            <%= render partial:"books/book", locals:{book: book} %>
+            <div class="GridLex-col-3_sm-4_xs-12 mb-30">
+              <%= render partial:"books/book", locals:{book: book} %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -154,7 +158,9 @@
     <div class="GridLex-gap-30-wrappper package-grid-item-wrapper">
       <div class="GridLex-grid-noGutter-equalHeight">
         <% @selled_books.each do |book| %>
-          <%= render partial:"books/book", locals:{book: book} %>
+          <div class="GridLex-col-3_sm-4_xs-12 mb-30">
+            <%= render partial:"books/book", locals:{book: book} %>
+          </div>
         <% end %>
       </div>
     </div>
