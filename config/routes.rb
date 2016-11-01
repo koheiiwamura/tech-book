@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :orders, only: [:new, :create, :index, :show]
     resources :likes, only: [:create, :destroy]
-    resources :comments, only: :create
+    resources :comments, only: [:create, :destroy]
     post :payment
     post :confirmation
   end
