@@ -1,0 +1,140 @@
+.clear
+/ start Main Wrapper
+.main-wrapper.scrollspy-container
+  / start end Page title
+  = render partial:"layouts/flash"
+  .page-title{:style => "background-image:url('/images/my_room.jpeg');"}
+    .container
+      .row
+        .col-sm-10.col-sm-offset-1.col-md-6.col-md-offset-3
+          %h2.text-white
+            = @user.username
+            さん
+          .user-thumbnail.mb-10{:style => "background-image:url('\#{@user.avatar}');"}
+  .breadcrumb-wrapper.bg-light-2
+    .container
+      %ol.breadcrumb-list.booking-step
+        %li= link_to "Home", root_path
+        - if @user == current_user
+          %li
+            %span マイページ
+        - else
+          %li
+            %span
+              = @user.username
+              さんのページ
+  / end Page title
+  / end Main Wrapper
+  / start Back To Top
+  #back-to-top
+    %a{:href => "#"}
+      %i.fa.fa-angle-up
+  / end Back To Top
+  - if @user.id == current_user.id
+    .clear
+    / start Main Wrapper
+    .content-wrapper
+      .container
+        .row
+          .col-sm-8.col-md-9
+            .confirmation-wrapper
+              .confirmation-content
+                .section-title.text-left
+                  %h4 登録情報
+                %ul.book-sum-list
+                  %li
+                    %span.font600 ユーザーネーム:
+                    = @user.username
+                    様
+                  %li
+                    %span.font600 email:
+                    = @user.email
+              - if @user.address
+                .confirmation-content
+                  .section-title.text-left
+                    %h4 購入者情報
+                  %ul.book-sum-list
+                    %li
+                      %span.font600 苗字:
+                      = @user.address.last_name
+                    %li
+                      %span.font600 名前:
+                      = @user.address.first_name
+                    %li
+                      %span.font600 電話番号:
+                      = @user.address.phone_number
+                    %li
+                      %span.font600 郵便番号:
+                      = @user.address.postal_code
+                    %li
+                      %span.font600 住所:
+                      = @user.address.street_address
+              - if @user.bank
+                .confirmation-content
+                  .section-title.text-left
+                    %h4 売上金受け取り口座情報
+                  %ul.book-sum-list
+                    %li
+                      %span.font600 口座名:
+                      = @user.bank.bank_name
+                    %li
+                      %span.font600 支店名:
+                      = @user.bank.branch_name
+                    %li
+                      %span.font600 口座種別:
+                      = @user.bank.account_type
+                    %li
+                      %span.font600 口座番号:
+                      = @user.bank.number
+                    %li
+                      %span.font600 口座名義:
+                      = @user.bank.holder_name
+              .text-right
+                = link_to "編集する", edit_user_path(@user), class:"anchor btn btn-primary btn-inverse", method: :get
+                = link_to "トップページへ", root_path, class:"anchor btn btn-primary"
+%section.bg-light.new-books
+  .container
+    .row
+      .col-sm-8.col-md-6.col-sm-offset-2.col-md-offset-3
+        .section-title
+          %h3 お気に入り一覧
+          %p お気に入りされた技術書の一覧です。
+    .GridLex-gap-30-wrappper.package-grid-item-wrapper
+      .GridLex-grid-noGutter-equalHeight
+        - @favorite_books.each do |book|
+          .GridLex-col-3_sm-4_xs-12.mb-30
+            = render partial:"books/book", locals:{book: book}
+    .text-center
+      = paginate @favorite_books
+%section.bg-light.new-books
+  .container
+    .row
+      .col-sm-8.col-md-6.col-sm-offset-2.col-md-offset-3
+        .section-title
+          %h3 購入一覧
+          %p 購入された技術書の一覧です。
+    .GridLex-gap-30-wrappper.package-grid-item-wrapper
+      .GridLex-grid-noGutter-equalHeight
+        - @bought_books.each do |book|
+          .GridLex-col-3_sm-4_xs-12.mb-30
+            = render partial:"books/book", locals:{book: book}
+    .text-center
+      = paginate @bought_books
+%section.bg-light.new-books
+  .container
+    .row
+      .col-sm-8.col-md-6.col-sm-offset-2.col-md-offset-3
+        .section-title
+          %h3
+            - if @user != current_user
+              = @user.username
+              さんの
+            出品一覧
+          %p 出品された技術書の一覧です。
+    .GridLex-gap-30-wrappper.package-grid-item-wrapper
+      .GridLex-grid-noGutter-equalHeight
+        - @selled_books.each do |book|
+          .GridLex-col-3_sm-4_xs-12.mb-30
+            = render partial:"books/book", locals:{book: book}
+    .text-center
+      = paginate @selled_books

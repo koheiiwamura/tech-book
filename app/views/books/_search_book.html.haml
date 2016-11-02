@@ -1,0 +1,26 @@
+.col-md-6.col-lg-4.pl-0.ml-0
+  .package-list-item.clearfix.pl-15
+    = link_to book_path(book), class:"package-list-item-link" do
+      .image
+        = image_tag book.image, alt:"Tour Package"
+        .absolute-in-image
+          - if book.order
+            = image_tag '/images/sold.png', class:"soldout"
+          .duration
+            %span= book.category
+      .content
+        .row.gap-10
+          .col-sm-12.col-md-12
+            %h5
+              = book.title
+              - if book.likes_count != 0
+                %span.btn.likes_count
+                  %i.fa.fa-heart-o{:style => "color: red"}
+                  = book.likes_count
+              - else
+                %span.btn.likes_count
+                  %i.fa.fa-heart-o{:style => "color: white"}
+          .col-sm-12.col-md-12.text-left-sm
+            .price
+              = book.total_price(book)
+              円

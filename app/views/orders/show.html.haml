@@ -1,0 +1,70 @@
+.clear
+/ start Main Wrapper
+.main-wrapper
+  .breadcrumb-wrapper.bg-light-2
+    .container
+      = render partial:"layouts/flash"
+      %ol.breadcrumb-list.booking-step
+        %li= link_to "Home", root_path
+        %li= link_to "詳細ページ", book_path(@book)
+        %li
+          %span 購入手続き
+        %li
+          %span 完了画面
+  .content-wrapper
+    .container
+      .row
+        .col-sm-8.col-md-9
+          .confirmation-wrapper
+            .payment-success
+              .icon
+                %i.pe-7s-check.text-success
+              .content
+                %h2.heading.uppercase.mt-0.text-success 購入が完了しました。
+                %p ご登録いただいたメール宛にお支払情報に関するご案内を送信させていただきます。
+            .clearfix.mb-20
+              .col-xs-8.col-md-4.pl-0
+                %img{:alt => "", :src => "#{@book.image}"}/
+            .confirmation-content
+              .section-title.text-left
+                %h4 お届け先詳細
+              %ul.book-sum-list
+                %li
+                  %span.font600 宛名:
+                  = @order_detail.last_name
+                  = @order_detail.first_name
+                  様
+                %li
+                  %span.font600 書籍名:
+                  = @book.title
+                %li
+                  %span.font600 お届け先郵便番号:
+                  = @order_detail.postal_code
+                %li
+                  %span.font600 お届け先住所:
+                  = @order_detail.street_address
+                %li
+                  %span.font600 お支払金額合計:
+                  = @book.all_total_price(@book)
+                  円
+            .text-right
+              = link_to "マイページへ", user_path(current_user), class:"btn btn-primary btn-inverse"
+              = link_to "トップページへ", root_path, class:"btn btn-primary btn-inverse"
+        .col-sm-4.col-md-3.mt-50-xs
+          %aside.sidebar.with-filter
+            .sidebar-inner
+              .sidebar-module
+                %h4.heading.mt-0 お問い合わせ
+                .sidebar-module-inner
+                  %p.mb-10 東京都渋谷区道玄坂２丁目新大宗ビル３号館８階
+                  %ul.help-list
+                    %li
+                      %span.font600> 電話番号
+                      \: 090-0000-0000
+                    %li
+                      %span.font600> Email
+                      \: support@tech-book.com
+                    %li
+                      %span.font600> Twitter
+                      \: @tech-book
+/ end Main Wrapper
