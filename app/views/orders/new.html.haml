@@ -82,16 +82,16 @@
                           = f.select :payment_method, options_for_select(["銀行振り込み", "クレジットカード"]), {},{ class: "form-control payment" }
                     .center.hide
                       %script.webpay-button{"data-key" => "ENV['ACCESS_KEY_ID']", "data-partial" => "true", "data-submit-text" => "カード決済で確定する", :src => "https://checkout.webpay.jp/v1/"}
-          .checkbox-block
-            %input#accept_booking.checkbox{:name => "accept_booking", :type => "checkbox", :value => "paymentsCreditCard"}/
-            %label{:for => "accept_booking"}
-              %a{:href => "#"}> 利用規約
-              及び
-              %a{:href => "#"}> プライバシーポリシー
-              に同意します。
-          .row.mt-20.clearfix
-            .col-sm-12.col-md-12
-              = f.submit "注文を確定する", class:"btn", id:"submit"
+                    .checkbox-block
+                      %input#accept_booking.checkbox{:name => "accept_booking", :type => "checkbox", :value => "paymentsCreditCard"}/
+                      %label{:for => "accept_booking"}
+                        %a{:href => "#"}> 利用規約
+                        及び
+                        %a{:href => "#"}> プライバシーポリシー
+                        に同意します。
+                    .row.mt-20.clearfix
+                      .col-sm-12.col-md-12
+                        = f.submit "注文を確定する", class:"btn", id:"submit"
         .col-sm-4.col-md-3.hidden-xs
           .price-summary-wrapper
             %h4.heading.mt-0.text-primary.uppercase 注文内容

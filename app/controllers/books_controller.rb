@@ -5,7 +5,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.includes(:order).page(params[:page]).per(8).order("id DESC")
-    @like = Like.find_by(user_id: current_user.id, book_id: params[:id]) if current_user
+    @like = current_user.likes.find_by(book_id: params[:id]) if current_user
   end
 
   def new
@@ -23,7 +23,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @like = Like.find_by(user_id: current_user.id, book_id: params[:id]) if current_user
+    @like = current_user.likes.find_by(book_id: params[:id]) if current_user
     if @book.order
       @order = @book.order
       @order_detail = @order.order_detail

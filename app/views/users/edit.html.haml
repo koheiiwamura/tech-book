@@ -74,7 +74,7 @@
                     .form-group.gap-20
                       %label.col-sm-4.col-md-4.control-label 口座種別:
                       .col-sm-8.col-md-6
-                        = f.select :account_type, options_for_select(["普通", "当座", "貯蓄"]), class:"select select2-multi form-control"
+                        = f.select :account_type, options_for_select(["普通", "当座", "貯蓄"]),{}, class:"select select2-multi form-control"
                   .form-horizontal
                     .form-group.gap-20
                       %label.col-sm-4.col-md-4.control-label 口座番号:
