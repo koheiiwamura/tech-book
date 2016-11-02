@@ -1,0 +1,62 @@
+.clear
+/ start Main Wrapper
+.main-wrapper.scrollspy-container
+  / start end Page title
+  .page-title.detail-page-title{:style => "background-image:url('/images/books_on_desk2.jpg');"}
+    .container
+      .flex-row
+        .flex-column.flex-md-8.flex-sm-12
+          %h1.hero-title 出品した本を編集する
+          %p.line18 エンジニア仲間を輝かせる一冊に
+        .flex-column.flex-md-4.flex-align-bottom.flex-sm-12.mt-20-sm
+          .text-right.text-left-sm
+            = link_to "トップページへ", root_path, class: "anchor btn btn-primary"
+            = link_to "戻る", :back, class:"anchor btn btn-primary"
+  / end Page title
+  = form_for(@book) do |f|
+    .content-wrapper
+      .container
+        .row
+          .col-sm-3.col-xs-12.mb-50-xs
+            .scrollspy-sidebar.sidebar-detail.js-imgInput{:role => "complementary"}
+              = image_tag f.object.image, class:'js-imgView'
+              = f.file_field :image, class:'preImg', type:"file"
+          .col-md-9.mt-30-xs{:role => "main"}
+            .detail-content-wrapper
+              #section-0.detail-content
+                .section-title.text-left
+                  %h4 本の名前
+                = f.text_field :title, placeholder: "本のタイトル", required: true, class:"form-control", maxlength: 50
+              #section-2.detail-content
+                .section-title.text-left
+                  %h4 詳細
+                .detail-item
+                  .row
+                    .col-sm-4.col-sm-3
+                      %ul.list-info.no-icon.bb-dotted
+                        %li
+                          %span.font600 本体価格(円)
+                          = f.text_field :price, placeholder: "本体価格", required: true, type:"number", min:"1", max:"100000", class:"form-control sell-form"
+                        %li
+                          %span.font600 送料(円)
+                          = f.text_field :postage, placeholder: "送料",required: true, type:"number", min:"0", max:"10000", class:"form-control sell-form"
+                        %li
+                          %span.font600 カテゴリ
+                          = f.select :category, options_for_select(["HTML CSS", "Ruby", "JavaScript", "Ruby on Rails", "PHP", "Java", "Python", "C", "Swift", "その他"],:selected => f.object.category), {},{ class: "form-control sell-form " }
+                        %li
+                          %span.font600 状態
+                          = f.select :state, options_for_select(["新品・未使用", "未使用に近い", "目立った傷や汚れ無し", "やや傷や汚れあり", "傷や汚れあり", "全体的に状態が悪い"],:selected => f.object.state), {},{ class: "form-control sell-form" }
+                    .col-sm-8.col-md-9
+                      %h5.mb-20 この本の内容を記入してください
+                      .intro-item-body
+                        = f.text_area :content, cols: "80", rows: "5", placeholder: "本の内容", required: true,  class:"form-control", maxlength: 400
+                  .text-center.pt-10
+                    = f.submit "更新する", class:"btn btn-primary btn-full-width"
+              .call-to-action
+                %a.btn.btn-primary.btn-sm.btn-inverse{:href => "#"} お問い合わせ
+/ end Main Wrapper
+/ start Back To Top
+#back-to-top
+  %a{:href => "#"}
+    %i.fa.fa-angle-up
+/ end Back To Top

@@ -1,0 +1,38 @@
+%footer.footer
+  .container
+    .main-footer
+      .row
+        .col-xs-12.col-sm-5.col-md-3
+          .footer-logo
+            = link_to image_tag('techbook_logo.png', alt:"Logo"), root_path
+          %p.footer-address
+            150-0000 東京都渋谷区道玄坂２丁目
+            %br>/
+            新大宗ビル３号館８階
+            %br/
+            %i.fa.fa-phone
+            +66 28 878 5452
+            %br/
+            %i.fa.fa-phone
+            +66 2 547 2223
+            %br/
+            %i.fa.fa-envelope-o
+            %a{:href => "#"} support@techbook.com
+          .footer-social
+            %a{"data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => "Facebook"}= fa_icon "facebook"
+            %a{"data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => "Twitter"}
+              %i.fa.fa-twitter
+            %a{"data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => "Github"}
+              %i.fa.fa-github
+          %p.copy-right © Copyright 2016 techbook. All Rights Reserved
+        .col-xs-12.col-sm-7.col-md-9
+          .row.gap-10
+            .col-xs-12.col-sm-4.col-md-3.mt-30-xs.col-md-offset-3
+              %h5.footer-title techbookについて
+              %ul.footer-menu
+                %li
+                  %a{:href => "#"} 運営会社について
+                %li
+                  %a{:href => "#"} 利用規約
+                %li
+                  %a{:href => "#"} プライバシーポリシー

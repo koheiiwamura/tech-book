@@ -1,0 +1,143 @@
+.clear
+/ start Main Wrapper
+.main-wrapper
+  = render partial:"layouts/flash"
+  .breadcrumb-wrapper.bg-light-2
+    .container
+      %ol.breadcrumb-list.booking-step
+        %li= link_to "Home", root_path
+        %li= link_to "詳細ページ", book_path(@book)
+        %li
+          %span 購入手続き
+  .content-wrapper
+    .container
+      .row
+        .col-sm-8.col-md-9{:role => "main"}
+          .section-title.text-left.clearfix
+            .title-left
+              = image_tag @book.image, class:"sell_book"
+            .title-right
+              %h3= @book.title
+              %small を購入します。
+          .payment-container
+            .payment-box
+              .payment-header.clearfix
+                .number
+                  \!
+                %h5.heading.mt-1
+                  お届け先詳細
+                  \#{link_to "住所の初期設定をする", edit_user_path(current_user), class:"btn-primary btn-sm btn-inverse btn-address"}
+                %p
+                  %spna.necessary-info *必須情報
+              = form_for(@order, url: book_orders_path(book_id: @book.id)) do |f|
+                .payment-content
+                  .payment-traveller
+                    .row.gap-0
+                    .form-horizontal
+                      .form-group.gap-20
+                        %label.col-sm-4.col-md-4.control-label
+                          %spna.necessary-info> *
+                          姓:
+                        .col-sm-6.col-md-6
+                          = text_field_tag "order_detail[last_name]", "#{@address.last_name}", class:"form-control", required: true
+                    .form-horizontal
+                      .form-group.gap-20
+                        %label.col-sm-4.col-md-4.control-label
+                          %spna.necessary-info> *
+                          名:
+                        .col-sm-6.col-md-6
+                          = text_field_tag "order_detail[first_name]", "#{@address.first_name}", class:"form-control", required: true
+                    .form-horizontal
+                      .form-group.gap-20
+                        %label.col-sm-4.col-md-4.control-label
+                          %spna.necessary-info> *
+                          メールアドレス:
+                        .col-sm-6.col-md-6
+                          = text_field_tag "order_detail[email]", "#{current_user.email}", class:"form-control", required: true
+                    .form-horizontal
+                      .form-group.gap-20
+                        %label.col-sm-4.col-md-4.control-label 電話番号:
+                        .col-sm-6.col-md-6
+                          = text_field_tag "order_detail[phone_number]", "#{@address.phone_number}", class:"form-control", required: true
+                    .form-horizontal
+                      .form-group.gap-20
+                        %label.col-sm-4.col-md-4.control-label
+                          %spna.necessary-info> *
+                          郵便番号:
+                        .col-sm-6.col-md-6
+                          = text_field_tag "order_detail[postal_code]", "#{@address.postal_code}", class:"form-control", required: true, name:"order_detail[postal_code]", onKeyUp: "AjaxZip3.zip2addr(this,'','order_detail[street_address]','order_detail[street_address]');"
+                    .form-horizontal
+                      .form-group.gap-20
+                        %label.col-sm-4.col-md-4.control-label
+                          %spna.necessary-info> *
+                          住所:
+                        .col-sm-6.col-md-6
+                          = text_field_tag "order_detail[street_address]", "#{@address.street_address}", class:"form-control", required: true, name:"order_detail[street_address]"
+                    .form-horizontal
+                      .form-group.gap-20
+                        %label.col-sm-4.col-md-4.control-label
+                          %spna.necessary-info> *
+                          支払い方法:
+                        .col-sm-6.col-md-6
+                          = f.select :payment_method, options_for_select(["銀行振り込み", "クレジットカード"]), {},{ class: "form-control payment" }
+                    .center.hide
+                      %script.webpay-button{"data-key" => "ENV['ACCESS_KEY_ID']", "data-partial" => "true", "data-submit-text" => "カード決済で確定する", :src => "https://checkout.webpay.jp/v1/"}
+                    .checkbox-block
+                      %input#accept_booking.checkbox{:name => "accept_booking", :type => "checkbox", :value => "paymentsCreditCard"}/
+                      %label{:for => "accept_booking"}
+                        %a{:href => "#"}> 利用規約
+                        及び
+                        %a{:href => "#"}> プライバシーポリシー
+                        に同意します。
+                    .row.mt-20.clearfix
+                      .col-sm-12.col-md-12
+                        = f.submit "注文を確定する", class:"btn", id:"submit"
+        .col-sm-4.col-md-3.hidden-xs
+          .price-summary-wrapper
+            %h4.heading.mt-0.text-primary.uppercase 注文内容
+            %ul.price-summary-list
+              %li
+                %h6.heading.mt-0.mb-0= @book.title
+                %p.font12.text-light デザイン
+              %li.divider
+              %li
+                %h6.heading.mt-20.mb-5.text-primary.uppercase 価格内訳
+                .row.gap-10.mt-10
+                  .col-xs-7.col-sm-7
+                    本体価格
+                  .col-xs-5.col-sm-5.text-right
+                    = @book.price
+                    円
+                .row.gap-10.mt-10
+                  .col-xs-7.col-sm-7
+                    送料
+                  .col-xs-5.col-sm-5.text-right
+                    = @book.postage
+                    円
+                .row.gap-10.mt-10
+                  .col-xs-7.col-sm-7
+                    消費税
+                  .col-xs-5.col-sm-5.text-right
+                    = @book.price_tax(@book)
+                    円
+              %li.divider
+              %li.text-right.font600.font14
+                = @book.all_total_price(@book)
+                円
+              %li.divider
+              %li
+                .row.gap-10.font600.font14
+                  .col-xs-9.col-sm-9
+                    購入点数
+                  .col-xs-3.col-sm-3.text-right
+                    1
+              %li.total-price
+                .row.gap-10
+                  .col-xs-6.col-sm-6
+                    %h5.heading.mt-0.mb-0.text-white Amount due
+                    %p.font12 合計金額
+                  .col-xs-6.col-sm-6.text-right
+                    %span.block.font20.font600.mb-5
+                      = @book.all_total_price(@book)
+                      円
+/ end Main Wrapper

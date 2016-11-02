@@ -1,0 +1,147 @@
+.clear
+/ start Main Wrapper
+.main-wrapper.scrollspy-container
+  = render partial:"layouts/flash"
+  / start end Page title
+  .page-title{:style => "background-image:url('/images/my_room.jpeg');"}
+    .container
+      .row
+        .col-sm-10.col-sm-offset-1.col-md-6.col-md-offset-3
+          %h2.text-white= @user.username
+          .user-thumbnail.mb-10{:style => "background-image:url('\#{@user.avatar}');"}
+  .breadcrumb-wrapper.bg-light-2
+    .container
+      %ol.breadcrumb-list.booking-step
+        %li= link_to "Home", root_path
+        %li= link_to "マイページ",user_path(current_user)
+        %li
+          %span ユーザー登録編集
+  / end Page title
+  .content-wrapper
+    .container
+      .row
+        .col-sm-8.col-md-8
+          = form_for(@address) do |f|
+            .payment-box
+              .payment-header.clearfix
+                %h5.heading.mt-0 購入者情報
+              .payment-content
+                .payment-traveller.mb-0
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 姓:
+                      .col-sm-8.col-md-6
+                        = f.text_field :last_name, class:"form-control", required: true
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 名:
+                      .col-sm-8.col-md-6
+                        = f.text_field :first_name, class:"form-control", required: true
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 郵便番号:
+                      .col-sm-8.col-md-6
+                        = f.text_field :postal_code, class:"form-control", required: true, name:"address[postal_code]", onKeyUp: "AjaxZip3.zip2addr(this,'','address[street_address]','address[street_address]');"
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 住所:
+                      .col-sm-8.col-md-6
+                        = f.text_field :street_address, class:"form-control", required: true, name: "address[street_address]"
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 電話番号:
+                      .col-sm-8.col-md-6
+                        = f.text_field :phone_number, class:"form-control", required: true
+                .text-center
+                  = f.submit "購入者情報を更新", class:"btn btn-primary btn-sm btn-inverse"
+          = form_for(@bank) do |f|
+            .payment-box
+              .payment-header.clearfix
+                %h5.heading.mt-0 売上金受け取り口座情報
+              .payment-content
+                .payment-traveller.mb-0
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 銀行名:
+                      .col-sm-8.col-md-6
+                        = f.text_field :bank_name, class:"form-control", placeholder:"テック銀行", required: true
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 支店名:
+                      .col-sm-8.col-md-6
+                        = f.text_field :branch_name, class:"form-control", placeholder:"テック支店", required: true
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 口座種別:
+                      .col-sm-8.col-md-6
+                        = f.select :account_type, options_for_select(["普通", "当座", "貯蓄"]),{}, class:"select select2-multi form-control"
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 口座番号:
+                      .col-sm-8.col-md-6
+                        = f.text_field :number, class:"form-control", placeholder:"0123456", required: true, pattern:"[0-9]{7}", title:"半角数字7文字"
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 口座名義(カナ(半角スペース)カナ):
+                      .col-sm-8.col-md-6
+                        = f.text_field :holder_name, class:"form-control", placeholder:"テック(半角スペース)タロウ", required: true, pattern:"^[ァ-ン| | ]+$", title:"全角カタカナ"
+                .text-center
+                  = f.submit "受け取り口座情報を更新", class:"btn btn-primary btn-sm btn-inverse"
+          .payment-box
+            .payment-header.clearfix
+              %h5.heading.mt-0 登録情報
+            = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+              .payment-content
+                .payment-traveller.mb-0
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label ニックネーム:
+                      .col-sm-8.col-md-6
+                        = f.text_field :username, class:"form-control", value:"#{@user.username}"
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label メールアドレス:
+                      .col-sm-8.col-md-6
+                        = f.email_field :email, class:"form-control", value:"#{@user.email}"
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 現在のパスワード:
+                      .col-sm-8.col-md-6
+                        = f.password_field :current_password, class:"form-control", placeholder: "必ず入力してください"
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 新しいパスワード:
+                      .col-sm-8.col-md-6
+                        = f.password_field :password,:autocomplete => "off", class:"form-control", placeholder: "パスワードを変更しない場合は記入しないでください",autocomplete: "off"
+                  .form-horizontal
+                    .form-group.gap-20
+                      %label.col-sm-4.col-md-4.control-label 新しいパスワード確認:
+                      .col-sm-8.col-md-6
+                        = f.password_field :password_confirmation, class:"form-control", placeholder: "パスワードを変更しない場合は記入しないでください",autocomplete: "off"
+                .text-center
+                  = f.submit "登録情報を更新", class:"btn btn-primary btn-sm btn-inverse"
+        .col-sm-4.col-md-4.mt-50-xs
+          %aside.sidebar
+            .sidebar-inner.no-border.for-blog
+              .clear
+              .sidebar-module
+                %h4.sidebar-title 購入履歴
+                .sidebar-module-inner
+                  %ul.sidebar-post
+                    - @bought_books.each do |book|
+                      %li.clearfix
+                        %a{:href => "blog-single.html"}
+                          .image
+                            = link_to image_tag("#{book.image}", alt:'Popular Post'), book_path(book)
+                          .content
+                            %h6= book.title
+                            %p.recent-post-sm-meta
+                              %i.fa.fa-clock-o.mr-5
+                              = book.order.created_at.strftime("%b %d, %Y")
+              = paginate @bought_books
+              .clear
+/ end Main Wrapper
+/ start Back To Top
+#back-to-top
+  %a{:href => "#"}
+    %i.fa.fa-angle-up

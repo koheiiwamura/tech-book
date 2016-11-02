@@ -1,0 +1,139 @@
+.clear
+/ start Main Wrapper
+.main-wrapper.scrollspy-container
+  = render partial:"layouts/flash"
+  / start end Page title
+  .page-title.detail-page-title{:style => "background-image:url('/images/books_on_desk2.jpg');"}
+    .container
+      .flex-row
+        .flex-column.flex-md-8.flex-sm-12
+          %h1.hero-title= @book.title
+        .flex-column.flex-md-4.flex-align-bottom.flex-sm-12.mt-20-sm
+          .text-right.text-left-sm
+            = link_to "トップページへ", root_path, class:"anchor btn btn-primary"
+            = link_to "戻る", :back, class:"anchor btn btn-primary"
+  / end Page title
+  .content-wrapper
+    .container
+      .row
+        .col-sm-3.col-xs-12.mb-50-xs
+          .scrollspy-sidebar.sidebar-detail{:role => "complementary"}
+            = image_tag("#{@book.image}", alt: "Logo")
+          - if current_user == @book.user && @order
+            .detail-content-wrapper.shipping-address
+              .confirmation-content
+                .section-title.text-left
+                  %h4.shipping-address-color お届け先詳細
+                %ul.book-sum-list
+                  %li
+                    %span.font600 宛名:
+                    = @order_detail.last_name
+                    = @order_detail.first_name
+                    様
+                  %li
+                    %span.font600 書籍名:
+                    = @book.title
+                  %li
+                    %span.font600 お届け先郵便番号:
+                    = @order_detail.postal_code
+                  %li
+                    %span.font600 お届け先住所:
+                    = @order_detail.street_address
+                  %li
+                    %span.font600 お支払金額合計:
+                    = @book.all_total_price(@book)
+                    円
+        .col-md-9.mt-30-xs{:role => "main"}
+          %div
+            #section-0.detail-content
+              .section-title.text-left
+                %h4 概要
+              %h5.heading
+                = @book.title
+                - if !(@book.order)
+                  %span#like_buttons
+                    = render partial:"likes/like", locals:{book: @book, like: @like}
+              %h5.price.mt-0
+                合計金額:
+                %span
+                  = @book.total_price(@book)
+                  円
+            #section-2.detail-content
+              .section-title.text-left
+                %h4 詳細
+              .detail-item
+                .row
+                  .col-sm-4.col-sm-3
+                    %ul.list-info.no-icon.bb-dotted
+                      %li
+                        %span.font600 出品者:
+                        = link_to "#{@book.user.username}さん", user_path(@book.user)
+                      %li
+                        %span.font600 本体価格:
+                        = @book.price
+                        円
+                      %li
+                        %span.font600 送料:
+                        = @book.postage
+                        円
+                      %li
+                        %span.font600 カテゴリ:
+                        = @book.category
+                      %li
+                        %span.font600 状態:
+                        = @book.state
+                  .col-sm-8.col-md-9
+                    .itinerary-wrapper
+                      .itinerary-item
+                        %h5.mb-20 この本について
+                        .intro-item-body
+                          %p= @book.content
+                - if current_user
+                  - if current_user.id != @book.user_id
+                    - if @book.order
+                      .text-center.pt-10
+                        .btn.btn-primary.btn-full-width 売り切れです
+                    - else
+                      .text-center.pt-10
+                        = link_to "購入ページへ", new_book_order_path(@book), class:"btn btn-primary btn-full-width"
+                  - else
+                    .text-center.pt-10
+                      - if !(@book.order)
+                        = link_to "編集する", edit_book_path(@book), class:"btn btn-primary btn-full-width"
+                      = link_to "削除する", book_path(@book), method: :delete, class:"destroy-button-custom btn  btn-full-width"
+            .detail-content
+              .section-title.text-left
+                %h4 関連する書籍
+              .GridLex-gap-20-wrappper.package-grid-item-wrapper.on-page-result-page.alt-smaller
+                .GridLex-grid-noGutter-equalHeight
+                  - if @related_books
+                    - @related_books.each do |book|
+                      .GridLex-col-4_sm-4_xs-12.mb-20
+                        = render partial:"books/book", locals:{book: book}
+            .detail-content
+              .section-title.text-left
+                - if @book.user == current_user
+                  %h4 他ユーザーからのコメント
+                - else
+                  %h4 出品者へコメント
+              .row.proto-comments
+                .col-md-8
+                  - if user_signed_in?
+                    = form_for([@book,@comment],remote: true) do |f|
+                      %p ※相手にとって不快なコメントは避けましょう。利用制限や退会処分となることがあります。
+                      .row
+                        .form-group.col-md-10
+                          = f.text_area :text, class: "form-control", rows: "2", cols: "50", placeholder: "コメント", required:"true", id:"comment_text"
+                        .form-group.col-md-2
+                          = f.submit "送信", :class=>"button btn", id:"submit"
+                  #comment_index
+                    = render partial:"comments/comment", locals:{comments: @comments, book: @book}
+                  = paginate @comments
+            .call-to-action
+              %a.btn.btn-primary.btn-sm.btn-inverse{:href => "#"} お問い合わせ
+/ end Main Wrapper
+/ start Back To Top
+#back-to-top
+  %a{:href => "#"}
+    %i.fa.fa-angle-up
+/ end Back To Top

@@ -1,0 +1,21 @@
+.page-title.detail-page-title{:style => "background-image:url('/images/books_on_desk2.jpg');"}
+  .container
+    .flex-row
+      .flex-column.flex-md-8.flex-sm-12
+      .flex-column.flex-md-4.flex-align-bottom.flex-sm-12.mt-20-sm
+        .text-right.text-left-sm
+          = link_to "トップページへ", root_path, class:"anchor btn btn-primary"
+%section.bg-light.new-books
+  .container
+    .row
+      .col-sm-8.col-md-6.col-sm-offset-2.col-md-offset-3
+        .section-title
+          %h3
+            = current_user.username
+            さんの出品書一覧
+          %p 出品された技術書の一覧です。
+    .GridLex-gap-30-wrappper.package-grid-item-wrapper
+      .GridLex-grid-noGutter-equalHeight
+        - @books.each do |book|
+          .GridLex-col-3_sm-4_xs-12.mb-30
+            = render partial:"books/book", locals:{book: book}

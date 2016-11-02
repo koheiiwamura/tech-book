@@ -1,0 +1,26 @@
+.package-grid-item
+  %a{:href => "detail-page.html"}
+    .image
+      = link_to image_tag("#{book.image}"), book_path(book.id)
+      .absolute-in-image
+        - if book.order
+          = image_tag '/images/sold.png', class:"soldout"
+        .duration
+          %span= book.category
+    .content.clearfix
+      %h5= truncate(book.title, :length => 25, :omssion => "...")
+      .absolute-in-content
+        - if !(book.order)
+          - if book.likes_count != 0
+            %span.btn.likes_count
+              %i.fa.fa-heart-o{:style => "color: red"}
+              = book.likes_count
+          - else
+            %span.btn.likes_count
+              %i.fa.fa-heart-o{:style => "color: white"}
+        - else
+          %span.btn.likes_count
+            %i.fa.fa-heart-o{:style => "color: white"}
+        .price
+          = book.total_price(book)
+          円
