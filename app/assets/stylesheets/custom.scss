@@ -133,6 +133,7 @@
   position:relative;
   width:350px;
   background-color:#F5F5F5;
+  text-align:left;
 }
 .seller-comment-body:after  {
   border:10px solid transparent;
@@ -182,6 +183,7 @@
   position:relative;
   width:350px;
   background-color:rgba(51,204,153,0.2);
+  text-align:left;
 }
 .my-seller-comment-body:after  {
   border:10px solid transparent;
@@ -207,4 +209,47 @@
 
 .alert{
   margin:0;
+}
+.sell-form{
+  display:inline-block;
+}
+.btn-address{
+  opacity: 0.7;
+}
+.sell_book{
+  width:100px;
+}
+.clearfix:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.title-left{
+  float:left;
+}
+.title-right{
+  float:right;
+  width:85%;
+}
+.shipping-address{
+  margin-top:10px;
+  padding:10px;
+  color:white;
+  background-color:rgba(19, 183, 136, 0.8);
+  border-color: $main_color;
+}
+.shipping-address-color{
+  color:white;
+}
+.trash{
+  float:right;
+  color:#666;
+  opacity:0.4;
+  transition:all 0.2s;
+}
+.trash:hover{
+  opacity:0.8;
+  cursor: pointer;
 }

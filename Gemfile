@@ -60,4 +60,5 @@ gem 'webpay'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
-
+gem "haml-rails"
+gem "erb2haml"

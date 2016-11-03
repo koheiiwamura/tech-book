@@ -1,0 +1,28 @@
+.clear
+/ start Main Wrapper
+.main-wrapper.scrollspy-container
+  / start end Page title
+  = render partial:"layouts/flash"
+  .page-title{:style => "background-image:url('/images/my_room.jpeg');"}
+    .container
+      .row
+        .col-sm-10.col-sm-offset-1.col-md-6.col-md-offset-3
+          %h2.text-white 購入一覧
+          .user-thumbnail.mb-10{:style => "background-image:url('\#{@user.avatar}');"}
+  .breadcrumb-wrapper.bg-light-2
+    .container
+      %ol.breadcrumb-list.booking-step
+        %li= link_to "Home", root_path
+        %li
+          %span 購入一覧
+%section.bg-light
+  .container
+    .row
+      .col-sm-8.col-md-6.col-sm-offset-2.col-md-offset-3
+        .section-title
+          %p 購入された技術書の一覧です。
+    .GridLex-gap-30-wrappper.package-grid-item-wrapper
+      .GridLex-grid-noGutter-equalHeight
+        - @books.each do |book|
+          .GridLex-col-3_sm-4_xs-12.mb-30
+            = render partial:"books/book", locals:{book: book}

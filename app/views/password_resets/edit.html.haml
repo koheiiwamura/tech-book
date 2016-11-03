@@ -1,0 +1,40 @@
+.clear
+/ start Main Wrapper
+.main-wrapper.scrollspy-container
+  / start end Page title
+  .page-title.detail-page-title{:style => "background-image:url('/images/books_on_desk2.jpg');"}
+    .container
+      .flex-row
+        .flex-column.flex-md-8.flex-sm-12
+          %h1.hero-title パスワードをリセットする
+        .flex-column.flex-md-4.flex-align-bottom.flex-sm-12.mt-20-sm
+          .text-right.text-left-sm
+            = link_to "リセットをやめる", root_path, class: "anchor btn btn-primary"
+  / end Page title
+  = form_for @user, :url => password_reset_path(params[:id]) do |f|
+    .content-wrapper
+      .container
+        .row
+          .col-md-9.mt-30-xs{:role => "main"}
+            .detail-content-wrapper
+              #section-0.detail-content
+              #section-2.detail-content
+                .section-title.text-left
+                  %h4 パスワードリセット
+                .detail-item
+                  .row
+                    .col-sm-4.col-sm-3
+                      %ul.list-info.no-icon.bb-dotted
+                        %li
+                          %span.font600 新しいパスワード:
+                          = f.password_field :password
+                        %li
+                          %span.font600 パスワード確認:
+                          = f.password_field :password_confirmation
+                  .text-center.pt-10
+                    = f.submit "パスワードをリセットする", class:"btn btn-primary"
+/ end Main Wrapper
+/ start Back To Top
+#back-to-top
+  %a{:href => "#"}
+    %i.fa.fa-angle-up

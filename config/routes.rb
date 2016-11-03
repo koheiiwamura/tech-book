@@ -7,16 +7,18 @@ Rails.application.routes.draw do
   namespace :users do
     resources :selled, only:[:index]
   end
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resources :orders, only: :index
+  end
   resources :password_resets
-  resources :addresses, only: :update
+  resources :addresses, only: [:create, :update]
   resources :banks, only: [:create, :update]
   root 'books#index'
   get 'books/search' => 'books/search#index'
   resources :books do
-    resources :orders, only: [:new, :create, :show]
+    resources :orders, only: [:new, :create, :index, :show]
     resources :likes, only: [:create, :destroy]
-    resources :comments, only: :create
+    resources :comments, only: [:create, :destroy]
     post :payment
     post :confirmation
   end

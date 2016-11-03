@@ -1,0 +1,59 @@
+- comments.each do |comment|
+  .media
+  - if comment.user == book.user
+    .media-body
+      .seller-comment
+        %h6#top-aligned-media.media-heading
+          - if current_user == comment.user
+            あなた
+          - else
+            = comment.user.username
+            さん(出品者)
+          %a.anchorjs-link
+            %span.anchorjs-icon
+        - if current_user == comment.user
+          .comment.my-seller-comment-body
+            = comment.text
+            %p
+              %i.fa.fa-clock-o
+              = time_ago_in_words(comment.created_at)
+              - if current_user == book.user
+                = link_to book_comment_path(book, comment), :method => :delete, data: { confirm: "本当に削除してもよろしいですか" },  remote: true do
+                  %i.fa.fa-trash-o.trash{"aria-hidden" => "true", :type => "button"}
+        - else
+          .comment.seller-comment-body
+            = comment.text
+            %p
+              %i.fa.fa-clock-o
+              = time_ago_in_words(comment.created_at)
+              - if current_user == book.user
+                = link_to book_comment_path(book, comment), :method => :delete, data: { confirm: "本当に削除してもよろしいですか" },  remote: true do
+                  %i.fa.fa-trash-o.trash{"aria-hidden" => "true", :type => "button"}
+  - else
+    .media-body
+      %h6#top-aligned-media.media-heading
+        - if current_user == comment.user
+          あなた
+        - else
+          = comment.user.username
+          さん
+        %a.anchorjs-link
+          %span.anchorjs-icon
+      - if current_user == comment.user
+        .comment.my-comment-body
+          = comment.text
+          %p
+            %i.fa.fa-clock-o
+            = time_ago_in_words(comment.created_at)
+            - if current_user == book.user
+              = link_to book_comment_path(book, comment), :method => :delete, data: { confirm: "本当に削除してもよろしいですか" },  remote: true do
+                %i.fa.fa-trash-o.trash{"aria-hidden" => "true", :type => "button"}
+      - else
+        .comment.other-comment-body
+          = comment.text
+          %p
+            %i.fa.fa-clock-o
+            = time_ago_in_words(comment.created_at)
+            - if current_user == book.user
+              = link_to book_comment_path(book, comment), :method => :delete, data: { confirm: "本当に削除してもよろしいですか" },  remote: true do
+                %i.fa.fa-trash-o.trash{"aria-hidden" => "true", :type => "button"}
