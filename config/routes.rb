@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :orders, only: :index
   end
-  resources :password_resets
+  resources :password_resets, only:[:create, :edit, :update]
   resources :addresses, only: [:create, :update]
   resources :banks, only: [:create, :update]
   root 'books#index'

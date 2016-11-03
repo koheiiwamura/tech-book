@@ -1,7 +1,5 @@
 class PasswordResetsController < ApplicationController
   before_action :set_user, only: [:edit, :update]
-  def new
-  end
 
   def create
     user = User.find_by_email(params[:email])
@@ -18,8 +16,9 @@ class PasswordResetsController < ApplicationController
     elsif
      @user.update_attributes(params.require(:user).permit(:password, :password_confirmation))
       redirect_to root_url, :notice => "パスワードがリセットされました。"
+      sign_in @user, :bypass => true
     else
-      render :edit
+      render :edit, :bypass => true
     end
   end
 
