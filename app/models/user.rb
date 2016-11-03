@@ -24,14 +24,6 @@ class User < ActiveRecord::Base
   has_many :like_books, through: :likes, source: :book
   mount_uploader :avatar, ImageUploader
 
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-          user.email = data["email"] if user.email.blank?
-      end
-    end
-  end
-
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
@@ -43,6 +35,7 @@ class User < ActiveRecord::Base
         email:    auth.info.email,
         password: Devise.friendly_token[0, 20]
       )
+      user.send_facebook_password
     end
     user
   end
@@ -58,6 +51,13 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at = Time.zone.now
     self.save(validate: false)
     UserMailer.password_reset(self).deliver_now
+  end
+
+  def send_facebook_password
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    self.save(validate: false)
+    UserMailer.facebook_password(self).deliver_now
   end
 
 
