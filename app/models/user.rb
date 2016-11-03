@@ -3,10 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
-         :authentication_keys => [:username]
-  devise :omniauthable, omniauth_providers: [:facebook]
+         :authentication_keys => [:username], omniauth_providers: [:facebook]
 
-  #usernameを必須とする
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: {minimum:8}, on: :create
@@ -47,29 +45,31 @@ class User < ActiveRecord::Base
   end
 
   def send_password_reset
-    generate_token(:password_reset_token)
-    self.password_reset_sent_at = Time.zone.now
-    self.save(validate: false)
+    set_password_mailer
     UserMailer.password_reset(self).deliver_now
   end
 
   def send_facebook_password
-    generate_token(:password_reset_token)
-    self.password_reset_sent_at = Time.zone.now
-    self.save(validate: false)
+    set_password_mailer
     UserMailer.facebook_password(self).deliver_now
   end
 
 
   def update_without_current_password(params, *options)
     params.delete(:current_password)
-    if params[:password].blank? && params[:password_confirmation].blank?
-      params.delete(:password)
-      params.delete(:password_confirmation)
+    if params[:password, :password_confirmation].blank?
+      params.delete(:password, :password_confirmation)
     end
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+
+  private
+  def set_password_mailer
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    self.save(validate: false)
   end
 
 end
