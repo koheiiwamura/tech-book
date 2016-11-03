@@ -1,7 +1,5 @@
 class PasswordResetsController < ApplicationController
   before_action :set_user, only: [:edit, :update]
-  def new
-  end
 
   def create
     user = User.find_by_email(params[:email])
@@ -14,12 +12,13 @@ class PasswordResetsController < ApplicationController
 
   def update
     if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to new_password_reset_path, :alert => "Password reset has expired."
+      redirect_to new_password_reset_path, :alert => "パスワード変更の有効時間を過ぎました"
     elsif
      @user.update_attributes(params.require(:user).permit(:password, :password_confirmation))
       redirect_to root_url, :notice => "パスワードがリセットされました。"
+      sign_in @user, :bypass => true
     else
-      render :edit
+      render :edit, :bypass => true
     end
   end
 
